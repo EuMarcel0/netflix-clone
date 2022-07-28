@@ -1,13 +1,20 @@
-import { Box, Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { useAuthContext } from '../../contexts';
 
-export const Login = () => {
+interface ILoginProps {
+	children: React.ReactNode;
+}
 
-	const { login } = useAuthContext();
+export const Login = ({ children }: ILoginProps) => {
 
+	const { login, isAuthenticated } = useAuthContext();
 
+	if (isAuthenticated) {
+		return <>{children}</>;
+	}
 	return (
 		<Box>
+			<Typography variant="h4">Tela de Login</Typography>
 			<Button variant='contained' onClick={() => login('eve.holt@reqres.in', 'cityslicka')}>LOGAR</Button>
 		</Box>
 	);

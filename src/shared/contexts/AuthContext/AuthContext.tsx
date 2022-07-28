@@ -1,4 +1,4 @@
-import react, { createContext, useCallback, useContext, useState } from 'react';
+import react, { createContext, useCallback, useContext, useMemo, useState } from 'react';
 import { LoginService } from '../../services';
 import { IAuthContext, IAuthProvider } from './Types';
 
@@ -16,10 +16,19 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
 			setToken(result.token);
 			console.log(result.token);
 		}
-	}, []);
+	}, [token]);
+
+	const handleLogout = useCallback(() => {
+		if (token) {
+			setToken(undefined);
+			console.log(token);
+		}
+	}, [token]);
+
+	const isAuthenticated = useMemo(() => token !== undefined, [token]);
 
 	return (
-		<AuthContext.Provider value={{ login: handleLogin }}>
+		<AuthContext.Provider value={{ login: handleLogin, logout: handleLogout, isAuthenticated }}>
 			{children}
 		</AuthContext.Provider >
 	);
