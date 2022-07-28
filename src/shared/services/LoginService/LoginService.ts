@@ -7,7 +7,7 @@ export interface ILoginService {
 
 export const getToken = async (email: string, password: string): Promise<ILoginService | Error> => {
 	try {
-		const {data} = await apiLogin.get('/api/login', {data:{email: email, password: password}});
+		const {data} = await apiLogin.post('login', {email: email, password: password});
 		if(data){
 			return data;
 		}

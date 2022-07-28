@@ -1,18 +1,12 @@
-import { Button } from '@mui/material';
-import { LoginService } from './shared/services';
+
+import { AuthProvider, useAuthContext } from './shared/contexts';
+import { Login } from './shared/components';
 
 export const App = () => {
 
-	const handleLogin = async (email: string, password: string) => {
-		const result = await LoginService.getToken(email, password);
-
-		console.log(result);
-	};
-
 	return (
-		<div>
-			Hello World
-			<Button onClick={() => handleLogin('eve.holt@reqres.in', 'cityslicka')}></Button>
-		</div>
+		<AuthProvider>
+			<Login />
+		</AuthProvider >
 	);
 };
