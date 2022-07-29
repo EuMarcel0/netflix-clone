@@ -7,6 +7,7 @@ import Bg from '../../assets/images/bg2.png';
 import { Form } from '@unform/web';
 import { ToastAlert, UnformInputText } from '../../shared/components';
 import { GitHub, LinkedIn, WhatsApp } from '@mui/icons-material';
+import { FooterLogin } from './components/FooterLogin';
 
 interface ILoginProps {
 	children: React.ReactNode;
@@ -145,6 +146,7 @@ export const Login = ({ children }: ILoginProps) => {
 				</LoginContainer>
 			</Box >
 			<Footer>
+				<FooterLogin />
 			</Footer>
 		</Box >
 	);
