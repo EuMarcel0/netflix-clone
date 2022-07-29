@@ -1,8 +1,8 @@
 
 import { AuthProvider } from './shared/contexts';
 import { BrowserRouter } from 'react-router-dom';
-import { Login } from './shared/components';
 import { AppRoutes } from './routes';
+import { Login } from './pages';
 
 export const App = () => {
 
