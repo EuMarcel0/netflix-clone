@@ -59,6 +59,7 @@ export const Login = ({ children }: ILoginProps) => {
 						height='100%'
 						maxHeight='660px'
 						padding={4}
+						sx={{ borderRadius: '4px' }}
 					>
 						<Box>
 							<Typography color='#FFF' variant='h2' fontSize='32px' fontWeight='bold'>Entrar</Typography>
@@ -66,7 +67,8 @@ export const Login = ({ children }: ILoginProps) => {
 						{/* Form area */}
 						<Box>
 							<Form onSubmit={console.log}>
-								<UnformInputText name='user' />
+								<UnformInputText name='user' label='Email ou número de telefone' />
+								<UnformInputText name='password' label='Senha' type='password' />
 							</Form>
 						</Box>
 					</Box>

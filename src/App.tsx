@@ -8,11 +8,11 @@ export const App = () => {
 
 	return (
 		<AuthProvider>
-			<Login>
-				<BrowserRouter>
+			<BrowserRouter>
+				<Login>
 					<AppRoutes />
-				</BrowserRouter>
-			</Login>
+				</Login>
+			</BrowserRouter>
 		</AuthProvider >
 	);
 };
