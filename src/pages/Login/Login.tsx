@@ -1,11 +1,12 @@
-import { Box, Button, CardMedia, Typography } from '@mui/material';
+import { Box, Button, CardMedia, Typography, useTheme, Link, Divider, IconButton } from '@mui/material';
 
 import { Footer, LoginContainer, ShadeBackground } from './Style';
 import { useAuthContext } from '../../shared/contexts';
 import LogoName from '../../assets/images/logo.svg';
 import Bg from '../../assets/images/bg2.png';
 import { Form } from '@unform/web';
-import { UnformInputText } from '../../shared/components';
+import { ToastAlert, UnformInputText } from '../../shared/components';
+import { GitHub, LinkedIn, WhatsApp } from '@mui/icons-material';
 
 interface ILoginProps {
 	children: React.ReactNode;
@@ -13,6 +14,7 @@ interface ILoginProps {
 
 export const Login = ({ children }: ILoginProps) => {
 	const { isAuthenticated } = useAuthContext();
+	const theme = useTheme();
 
 	//Será renderizado apenas se o usuário estiver autenticado
 	if (isAuthenticated) {
@@ -58,10 +60,10 @@ export const Login = ({ children }: ILoginProps) => {
 						maxWidth='450px'
 						height='100%'
 						maxHeight='660px'
-						padding={4}
+						padding={theme.spacing(8)}
 						sx={{ borderRadius: '4px' }}
 					>
-						<Box>
+						<Box marginBottom={3}>
 							<Typography color='#FFF' variant='h2' fontSize='32px' fontWeight='bold'>Entrar</Typography>
 						</Box>
 						{/* Form area */}
@@ -70,10 +72,78 @@ export const Login = ({ children }: ILoginProps) => {
 								<UnformInputText name='user' label='Email ou número de telefone' />
 								<UnformInputText name='password' label='Senha' type='password' />
 							</Form>
+							<Button
+								variant='contained'
+								fullWidth
+								size='large'
+								sx={{
+									py: '11px',
+									mt: '25px',
+									textTransform: 'capitalize',
+									fontSize: '16px',
+									backgroundColor: '#e50914',
+									'&:hover': {
+										backgroundColor: '#fb1c27',
+									}
+								}
+								}
+							>
+								Entrar
+							</Button>
+						</Box>
+						<Box width='100%' >
+							<Box
+								width='100%'
+								display='flex'
+								justifyContent='end'
+								marginTop={theme.spacing(1)}
+							>
+								<ToastAlert />
+							</Box>
+							<Box
+								display='flex'
+								marginTop={theme.spacing(8)}
+							>
+								<Typography variant='caption' fontSize='inherit' sx={{ color: '#b3b3b3' }}>
+									Novo por aqui?
+								</Typography>
+								<Divider orientation='vertical' sx={{ mr: '5px' }} />
+								<Link
+									href='https://www.netflix.com/br-en/'
+									variant='caption'
+									fontSize='inherit'
+									sx={{ color: '#f5f5f5' }}
+								>
+									Assine agora
+								</Link>
+							</Box>
+						</Box>
+						<Box
+							width='100%'
+							display='flex'
+							justifyContent='center'
+							alignItems='center'
+							marginTop={theme.spacing(6)}
+						>
+							<a href='https://github.com/EuMarcel0/' target='_blank' rel="noreferrer" >
+								<IconButton>
+									<GitHub fontSize='small' />
+								</IconButton>
+							</a>
+							<a href='https://www.linkedin.com/in/marcelo-ribeiro-da-silva-aa444921b/' target='_blank' rel="noreferrer">
+								<IconButton>
+									<LinkedIn fontSize='small' />
+								</IconButton>
+							</a>
+							<a href='https://api.whatsapp.com/send/?phone=5577991776299&text=Ol%C3%A1%2C+tudo+bem%3F&app_absent=0' target='_blank' rel="noreferrer">
+								<IconButton>
+									<WhatsApp fontSize='small' />
+								</IconButton>
+							</a>
 						</Box>
 					</Box>
 				</LoginContainer>
-			</Box>
+			</Box >
 			<Footer>
 			</Footer>
 		</Box >

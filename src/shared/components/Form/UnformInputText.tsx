@@ -25,25 +25,25 @@ export const UnformInputText = ({ name, ...rest }: IUnformInputTextProps) => {
 
 	return (
 		<Box
-			marginY={4}
+			marginBottom={2}
 		>
 			<TextField
 				{...rest}
 
+				sx={{ backgroundColor: focus ? '#484848' : '#333', borderRadius: '4px' }}
+				InputProps={{ color: 'warning' }}
 				value={value}
-				onChange={event => setValue(event.target.value)}
 				error={!!error}
 				helperText={error}
-				onKeyDown={() => clearError()}
 				focused={focus}
 				variant='filled'
 				color='warning'
 				fullWidth
+
+				onChange={event => setValue(event.target.value)}
+				onKeyDown={() => clearError()}
 				onBlur={() => setFocus(false)}
 				onClick={() => setFocus(true)}
-				InputLabelProps={{ color: 'warning', shrink: true }}
-				InputProps={{ color: 'warning' }}
-				sx={{ backgroundColor: focus ? '#484848' : '#333', borderRadius: '4px', fontSize: '16px' }}
 			/>
 		</Box>
 	);
