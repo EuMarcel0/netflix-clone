@@ -4,12 +4,16 @@ import Button from '@mui/material/Button';
 import { Box } from '@mui/material';
 
 export interface State extends SnackbarOrigin {
-	open: boolean;
+	open?: boolean;
+	description?: string;
+	message?: string;
 }
 
-export const ToastAlert = () => {
+export const ToastAlert = ({ description, message }: State) => {
 	const [state, setState] = React.useState<State>({
 		open: false,
+		message: '',
+		description: '',
 		vertical: 'top',
 		horizontal: 'center',
 	});
@@ -35,7 +39,7 @@ export const ToastAlert = () => {
 				sx={{ textTransform: 'initial', color: '#b3b3b3' }}
 
 			>
-				Precisa de ajuda?
+				{description}
 			</Button>
 		</React.Fragment>
 	);
@@ -47,7 +51,7 @@ export const ToastAlert = () => {
 				anchorOrigin={{ vertical, horizontal }}
 				open={open}
 				onClose={handleClose}
-				message={'This is a clone. For more information, visit the site: www.netflix.com'}
+				message={message}
 				key={vertical + horizontal}
 			/>
 		</Box>

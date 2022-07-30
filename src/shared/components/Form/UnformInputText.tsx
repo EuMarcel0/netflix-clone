@@ -1,8 +1,8 @@
-import { Box, TextField, TextFieldProps } from '@mui/material';
+import { Box, TextField, TextFieldProps, FormHelperTextProps } from '@mui/material';
 import { useField } from '@unform/core';
 import { useState, useEffect } from 'react';
 
-type IUnformInputTextProps = TextFieldProps & {
+type IUnformInputTextProps = TextFieldProps & FormHelperTextProps & {
 	name: string;
 	newValue?: string;
 }

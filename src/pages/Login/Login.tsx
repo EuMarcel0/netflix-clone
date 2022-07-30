@@ -27,7 +27,7 @@ const loginValidationYupSchema: yup.SchemaOf<IloginValidationYupSchemaProps> = y
 	password: yup.string().required().min(6),
 });
 
-// "email": "eve.holt@reqres.in", "password": "cityslicka"
+
 
 export const Login = ({ children }: ILoginProps) => {
 	const { isAuthenticated, login } = useAuthContext();
@@ -36,7 +36,6 @@ export const Login = ({ children }: ILoginProps) => {
 	const unformRef = useRef<FormHandles>(null);
 	const [isLoading, setIsLoading] = useState(false);
 
-	//Será renderizado apenas se o usuário estiver autenticado
 	if (isAuthenticated) {
 		return <>{children}</>;
 	}
@@ -64,8 +63,6 @@ export const Login = ({ children }: ILoginProps) => {
 			});
 	};
 
-
-	//Será renderizado se o usuário não estiver autenticado
 	return (
 		<Box
 			width='100vw'
@@ -73,7 +70,6 @@ export const Login = ({ children }: ILoginProps) => {
 			display='flex'
 		>
 			<Box width='100%' height='auto' >
-				{/* Shade in background image */}
 				<ShadeBackground style={{ position: 'fixed', top: 0, left: 0, bottom: 0, right: 0 }}>
 					<CardMedia component={'img'} src={Bg} width='100%' height='100%' sx={{ position: 'fixed', top: 0, left: 0, bottom: 0, right: 0 }} />
 				</ShadeBackground>
@@ -103,13 +99,14 @@ export const Login = ({ children }: ILoginProps) => {
 						maxWidth={smDown ? '100%' : '450px'}
 						height='100%'
 						maxHeight='660px'
+						overflow={'hidden'}
 						padding={theme.spacing(smDown ? 2 : 8)}
 						sx={{ borderRadius: '4px' }}
 					>
 						<Box marginBottom={3}>
 							<Typography color='#FFF' variant='h2' fontSize='32px' fontWeight='bold'>Entrar</Typography>
 						</Box>
-						{/* Form area */}
+
 						<Box>
 							<Form ref={unformRef} onSubmit={handleLogin}>
 								<UnformInputText name='user' label='Email ou número de telefone' />
@@ -142,7 +139,7 @@ export const Login = ({ children }: ILoginProps) => {
 								justifyContent='end'
 								marginTop={theme.spacing(1)}
 							>
-								<ToastAlert />
+								<ToastAlert message='This is a clone. For more information, visit the site: www.netflix.com' description='Precisa de ajuda?' vertical={'top'} horizontal={'left'} />
 							</Box>
 							<Box
 								display='flex'
@@ -162,12 +159,15 @@ export const Login = ({ children }: ILoginProps) => {
 								</Link>
 							</Box>
 						</Box>
+						<Box width='100%' display='flex' justifyContent='center' marginTop={theme.spacing(3)}>
+							<ToastAlert message='Email: eve.holt@reqres.in | Senha: cityslicka' description='Obter email e senha' vertical={'top'} horizontal={'left'} />
+						</Box>
 						<Box
 							width='100%'
 							display='flex'
 							justifyContent='center'
 							alignItems='center'
-							marginTop={theme.spacing(6)}
+							marginTop={theme.spacing(5)}
 						>
 							<a href='https://github.com/EuMarcel0/' target='_blank' rel="noreferrer" >
 								<IconButton>
