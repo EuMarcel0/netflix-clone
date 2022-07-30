@@ -1,8 +1,7 @@
 import { Environment } from '../../environment';
 import { apiMovies } from '../Api/Axios-Config/Api';
 
-
-interface IGetAllMoviesAndSeriesProps{
+export interface IGetAllMoviesAndSeriesProps{
 	relativeURL: string;
 }
 
