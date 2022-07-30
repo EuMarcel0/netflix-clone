@@ -25,11 +25,13 @@ export const Footer = styled.div`
 	height: 100%;
 	max-height: 255px;
 	width: 100vw;
-
+	padding-bottom: 10px;
 	position: absolute;
 	bottom: -170px;
 	left: 0;
 	right: 0;
+
+	overflow-y: hidden;
 
 	background-color: #000000ab;
 `;

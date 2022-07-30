@@ -1,26 +1,68 @@
-import { Box, Button, CardMedia, Typography, useTheme, Link, Divider, IconButton } from '@mui/material';
+import { useRef, useState } from 'react';
 
+import { Box, Button, CardMedia, Typography, useTheme, Link, Divider, IconButton, useMediaQuery, CircularProgress } from '@mui/material';
+import { GitHub, LinkedIn, WhatsApp } from '@mui/icons-material';
+import { Form } from '@unform/web';
+import * as yup from 'yup';
+
+import { ToastAlert, UnformInputText } from '../../shared/components';
 import { Footer, LoginContainer, ShadeBackground } from './Style';
+import { FooterLogin } from './components/FooterLogin';
 import { useAuthContext } from '../../shared/contexts';
 import LogoName from '../../assets/images/logo.svg';
 import Bg from '../../assets/images/bg2.png';
-import { Form } from '@unform/web';
-import { ToastAlert, UnformInputText } from '../../shared/components';
-import { GitHub, LinkedIn, WhatsApp } from '@mui/icons-material';
-import { FooterLogin } from './components/FooterLogin';
+import { FormHandles } from '@unform/core';
 
 interface ILoginProps {
 	children: React.ReactNode;
 }
 
+interface IloginValidationYupSchemaProps {
+	user: string;
+	password: string;
+}
+
+const loginValidationYupSchema: yup.SchemaOf<IloginValidationYupSchemaProps> = yup.object().shape({
+	user: yup.string().required().email(),
+	password: yup.string().required().min(6),
+});
+
+// "email": "eve.holt@reqres.in", "password": "cityslicka"
+
 export const Login = ({ children }: ILoginProps) => {
-	const { isAuthenticated } = useAuthContext();
+	const { isAuthenticated, login } = useAuthContext();
 	const theme = useTheme();
+	const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+	const unformRef = useRef<FormHandles>(null);
+	const [isLoading, setIsLoading] = useState(false);
 
 	//Será renderizado apenas se o usuário estiver autenticado
 	if (isAuthenticated) {
 		return <>{children}</>;
 	}
+
+	const handleLogin = (data: IloginValidationYupSchemaProps) => {
+		setIsLoading(true);
+		loginValidationYupSchema.validate(data, { abortEarly: false })
+			.then((dataValidated) => {
+				setIsLoading(true);
+				login(dataValidated.user, dataValidated.password)
+					.then(() => {
+						setIsLoading(false);
+					});
+			})
+			.catch((errors: yup.ValidationError) => {
+				setIsLoading(false);
+				const validationError: { [key: string]: string } = {};
+				errors.inner.forEach((error) => {
+					if (error.path) {
+						validationError[error.path] = error.message;
+					}
+					unformRef.current?.setErrors(validationError);
+				});
+
+			});
+	};
 
 
 	//Será renderizado se o usuário não estiver autenticado
@@ -44,7 +86,7 @@ export const Login = ({ children }: ILoginProps) => {
 				alignItems='start'
 				justifyContent='start'
 				paddingY={3}
-				paddingX={5}
+				paddingX={smDown ? 1 : 5}
 				position='absolute'
 				top='0'
 				left='0'
@@ -58,10 +100,10 @@ export const Login = ({ children }: ILoginProps) => {
 					<Box
 						bgcolor='#000000ab'
 						width='100%'
-						maxWidth='450px'
+						maxWidth={smDown ? '100%' : '450px'}
 						height='100%'
 						maxHeight='660px'
-						padding={theme.spacing(8)}
+						padding={theme.spacing(smDown ? 2 : 8)}
 						sx={{ borderRadius: '4px' }}
 					>
 						<Box marginBottom={3}>
@@ -69,7 +111,7 @@ export const Login = ({ children }: ILoginProps) => {
 						</Box>
 						{/* Form area */}
 						<Box>
-							<Form onSubmit={console.log}>
+							<Form ref={unformRef} onSubmit={handleLogin}>
 								<UnformInputText name='user' label='Email ou número de telefone' />
 								<UnformInputText name='password' label='Senha' type='password' />
 							</Form>
@@ -88,8 +130,9 @@ export const Login = ({ children }: ILoginProps) => {
 									}
 								}
 								}
+								onClick={() => unformRef.current?.submitForm()}
 							>
-								Entrar
+								{isLoading ? <CircularProgress size={28} /> : 'Entrar'}
 							</Button>
 						</Box>
 						<Box width='100%' >

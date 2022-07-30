@@ -4,9 +4,10 @@ import { useState, useEffect } from 'react';
 
 type IUnformInputTextProps = TextFieldProps & {
 	name: string;
+	newValue?: string;
 }
 
-export const UnformInputText = ({ name, ...rest }: IUnformInputTextProps) => {
+export const UnformInputText = ({ name, newValue, ...rest }: IUnformInputTextProps) => {
 	const { clearError, defaultValue, error, fieldName, registerField } = useField(name);
 
 	const [value, setValue] = useState(defaultValue || '');
@@ -39,9 +40,9 @@ export const UnformInputText = ({ name, ...rest }: IUnformInputTextProps) => {
 				variant='filled'
 				color='warning'
 				fullWidth
-
-				onChange={event => setValue(event.target.value)}
-				onKeyDown={() => clearError()}
+				defaultValue={newValue}
+				onChange={event => { setValue(event.target.value); rest.onChange?.(event); }}
+				onKeyDown={(e) => { error && clearError(); rest.onKeyDown?.(e); }}
 				onBlur={() => setFocus(false)}
 				onClick={() => setFocus(true)}
 			/>
