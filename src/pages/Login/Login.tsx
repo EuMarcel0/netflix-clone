@@ -6,7 +6,7 @@ import { Form } from '@unform/web';
 import * as yup from 'yup';
 
 import { ToastAlert, UnformInputText } from '../../shared/components';
-import { Footer, LoginContainer, ShadeBackground } from './Style';
+import { Footer, LoginContainer, ShadeBackground } from './Styles';
 import { FooterLogin } from './components/FooterLogin';
 import { useAuthContext } from '../../shared/contexts';
 import LogoName from '../../assets/images/logo.svg';
@@ -62,6 +62,12 @@ export const Login = ({ children }: ILoginProps) => {
 
 			});
 	};
+
+	window.addEventListener('keydown', (e) => {
+		if (e.key === 'Enter' || e.key === 'NumpadEnter') {
+			unformRef.current?.submitForm();
+		}
+	});
 
 	return (
 		<Box
@@ -129,7 +135,7 @@ export const Login = ({ children }: ILoginProps) => {
 								}
 								onClick={() => unformRef.current?.submitForm()}
 							>
-								{isLoading ? <CircularProgress size={28} /> : 'Entrar'}
+								{isLoading ? <CircularProgress size={28} sx={{ color: '#fff' }} /> : 'Entrar'}
 							</Button>
 						</Box>
 						<Box width='100%' >
@@ -169,21 +175,21 @@ export const Login = ({ children }: ILoginProps) => {
 							alignItems='center'
 							marginTop={theme.spacing(5)}
 						>
-							<a href='https://github.com/EuMarcel0/' target='_blank' rel="noreferrer" >
+							<Link href='https://github.com/EuMarcel0/' target='_blank' rel="noreferrer" >
 								<IconButton>
-									<GitHub fontSize='small' />
+									<GitHub sx={{ color: '#f5f5f5' }} fontSize='small' />
 								</IconButton>
-							</a>
-							<a href='https://www.linkedin.com/in/marcelo-ribeiro-da-silva-aa444921b/' target='_blank' rel="noreferrer">
+							</Link>
+							<Link href='https://www.linkedin.com/in/marcelo-ribeiro-da-silva-aa444921b/' target='_blank' rel="noreferrer">
 								<IconButton>
-									<LinkedIn fontSize='small' />
+									<LinkedIn sx={{ color: '#f5f5f5' }} fontSize='small' />
 								</IconButton>
-							</a>
-							<a href='https://api.whatsapp.com/send/?phone=5577991776299&text=Ol%C3%A1%2C+tudo+bem%3F&app_absent=0' target='_blank' rel="noreferrer">
+							</Link>
+							<Link href='https://api.whatsapp.com/send/?phone=5577991776299&text=Ol%C3%A1%2C+tudo+bem%3F&app_absent=0' target='_blank' rel="noreferrer">
 								<IconButton>
-									<WhatsApp fontSize='small' />
+									<WhatsApp sx={{ color: '#f5f5f5' }} fontSize='small' />
 								</IconButton>
-							</a>
+							</Link>
 						</Box>
 					</Box>
 				</LoginContainer>

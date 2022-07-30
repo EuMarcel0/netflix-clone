@@ -1,4 +1,4 @@
-import apiLogin from '../Api/Axios-Config/Api';
+import { apiLogin } from '../Api/Axios-Config/Api';
 
 
 export interface ILoginService {

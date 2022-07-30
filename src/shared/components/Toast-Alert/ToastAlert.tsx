@@ -17,6 +17,7 @@ export const ToastAlert = ({ description, message }: State) => {
 		vertical: 'top',
 		horizontal: 'center',
 	});
+
 	const { vertical, horizontal, open } = state;
 
 	const handleClick = (newState: SnackbarOrigin) => () => {
