@@ -15,6 +15,22 @@ interface IHomeMoveis {
 export const Home = () => {
 	const { logout } = useAuthContext();
 	const [movies, setMovies] = useState<IHomeMoveis[]>([]);
+	const [scrollY, setScrollY] = useState(false);
+
+	const handleScroll = () => {
+		if (window.scrollY > 150) {
+			setScrollY(true);
+		} else {
+			setScrollY(false);
+		}
+	};
+
+	useEffect(() => {
+		window.addEventListener('scroll', handleScroll);
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
 
 	const handleLogout = () => {
 		logout();
@@ -30,11 +46,17 @@ export const Home = () => {
 
 	return (
 		<Box
-			width='100vw'
-			height='100vh'
+			width='100%'
+			height='100%'
 			bgcolor='#141414'
 		>
-			<HeaderHome />
+			<HeaderHome bgOption={scrollY} />
+			<Box>
+				{[...new Array(999)].map(() => `Cras mattis consectetur purus sit amet fermentum.
+					Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+					Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+					Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`)}
+			</Box>
 		</Box>
 	);
 };

@@ -8,6 +8,10 @@
 
   	-webkit-font-smoothing: antialiased;
 }
+body{
+	padding-right: 0 !important;
+}
+
 /* For define color default in inputs and labels forms of project */
 input{
 	color: #f5f5f5 !important;

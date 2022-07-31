@@ -7,9 +7,11 @@ export interface State extends SnackbarOrigin {
 	open?: boolean;
 	description?: string;
 	message?: string;
+
+	children?: React.ReactNode;
 }
 
-export const ToastAlert = ({ description, message }: State) => {
+export const ToastAlert = ({ description, message, children }: State) => {
 	const [state, setState] = React.useState<State>({
 		open: false,
 		message: '',

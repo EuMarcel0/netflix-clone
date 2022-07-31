@@ -9,7 +9,8 @@ import Menu, { MenuProps } from '@mui/material/Menu';
 import Profile2 from '../../../assets/images/profile2.jpg';
 import Profile3 from '../../../assets/images/profile3.png';
 import Profile4 from '../../../assets/images/profile4.png';
-
+import { useAuthContext, useToastAlert } from '../../../shared/contexts';
+import { ToastAlert } from '../../../shared/components';
 
 
 const StyledMenu = styled((props: MenuProps) => (
@@ -35,7 +36,7 @@ const StyledMenu = styled((props: MenuProps) => (
 }));
 
 interface IItemsMenuProps {
-	description: string;
+	description: string | React.ReactNode;
 	img: React.ReactNode;
 	onClick: () => void;
 }
@@ -90,6 +91,8 @@ export const HeaderMenu = ({ children }: IHeaderMenuProps) => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
 
+	const { logout } = useAuthContext();
+
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
@@ -99,7 +102,7 @@ export const HeaderMenu = ({ children }: IHeaderMenuProps) => {
 	};
 
 	return (
-		<div>
+		<Box>
 			<IconButton onClick={handleClick}>
 				{children}
 				<ArrowDropDownIcon sx={{ color: '#f5f5f5' }} />
@@ -146,9 +149,9 @@ export const HeaderMenu = ({ children }: IHeaderMenuProps) => {
 				<ItemsMenu
 					img={<IconButton><Icon sx={{ color: '#f5f5f5' }} >logout</Icon></IconButton>}
 					description='Sair da Netflix'
-					onClick={handleClose}
+					onClick={logout}
 				/>
 			</StyledMenu>
-		</div>
+		</Box>
 	);
 };

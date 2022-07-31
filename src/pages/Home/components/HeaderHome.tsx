@@ -1,17 +1,19 @@
+import { useEffect, useState } from 'react';
 
-
-import LogoName from '../../../assets/images/logo.svg';
 import { CardMedia, Link, Stack, useTheme } from '@mui/material';
-import Toolbar from '@mui/material/Toolbar';
 import { HeaderInputSearch } from './HeaderInputSearch';
 import { HeaderMenu } from './HeaderMenu';
-import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 
 import ImagemProfile from '../../../assets/images/profile.png';
+import LogoName from '../../../assets/images/logo.svg';
 
 interface IMenuItemProps {
 	title: string;
+
+}
+interface IHeaderHomeProps {
+	bgOption: boolean;
 }
 
 const MenuItemLink = ({ title }: IMenuItemProps) => {
@@ -30,7 +32,8 @@ const MenuItemLink = ({ title }: IMenuItemProps) => {
 };
 
 
-export const HeaderHome = () => {
+
+export const HeaderHome = ({ bgOption }: IHeaderHomeProps) => {
 	const theme = useTheme();
 
 	return (
@@ -40,22 +43,36 @@ export const HeaderHome = () => {
 			alignItems='center'
 		>
 
-			<AppBar sx={{
-				px: '40px',
-				py: '10px',
-				backgroundColor: '#1414143b',
-				display: 'flex',
-				flexDirection: 'row',
-				justifyContent: 'space-between',
-				alignItems: 'center',
-			}}
+			<Box
+				sx={{
+					position: 'fixed',
+					top: 0,
+					left: 0,
+					right: 0,
+					zIndex: 999,
+					backgroundColor: bgOption ? '#141414' : 'transparent',
+					transition: '0.4s ease',
+					display: 'flex',
+					flexDirection: 'row',
+					justifyContent: 'space-between',
+					alignItems: 'center',
+					width: '100%',
+					py: '10px',
+					px: '57px',
+				}}
 			>
 				<Box display='flex' justifyContent='center' alignItems='center' >
-					<Toolbar >
-						<Box component="div" width='92px' height='31px' >
-							<CardMedia component='img' src={LogoName} width='100%' />
-						</Box>
-					</Toolbar>
+
+					<Box
+						width='92px'
+						height='31px'
+						display='flex'
+						justifyContent='center'
+						alignItems='center'
+					>
+						<CardMedia component='img' src={LogoName} width='100%' />
+					</Box>
+
 					<Box
 						display='flex'
 						justifyContent='center'
@@ -103,12 +120,9 @@ export const HeaderHome = () => {
 						</Box>
 					</Box>
 				</Box>
-			</AppBar>
-			<Toolbar />
+			</Box>
 			<Box>
-				<Box sx={{ my: 2, color: '#FFF' }}>
 
-				</Box>
 			</Box>
 		</Box>
 	);

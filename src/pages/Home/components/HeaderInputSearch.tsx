@@ -31,7 +31,7 @@ export const HeaderInputSearch = () => {
 								<TextField
 									size='small'
 									sx={{
-										m: 1, borderColor: '#f5f5f5',
+										borderColor: '#f5f5f5',
 										border: '1px solid #f5f5f5',
 										backgroundColor: '#000000a2'
 									}}
