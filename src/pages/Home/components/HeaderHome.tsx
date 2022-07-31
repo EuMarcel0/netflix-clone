@@ -1,10 +1,33 @@
-import React, { useEffect, useState } from 'react';
+
 
 import LogoName from '../../../assets/images/logo.svg';
-import { CardMedia, Link, useTheme } from '@mui/material';
-import AppBar from '@mui/material/AppBar';
+import { CardMedia, Link, Stack, useTheme } from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
+import { HeaderInputSearch } from './HeaderInputSearch';
+import { HeaderMenu } from './HeaderMenu';
+import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+
+import ImagemProfile from '../../../assets/images/profile.png';
+
+interface IMenuItemProps {
+	title: string;
+}
+
+const MenuItemLink = ({ title }: IMenuItemProps) => {
+	return (
+		<Link href='#' sx={{
+			textDecoration: 'none',
+			color: '#f5f5f5',
+			'&:hover': {
+				color: '#c0c0c0'
+			}
+		}}
+		>
+			{title}
+		</Link>
+	);
+};
 
 
 export const HeaderHome = () => {
@@ -40,45 +63,45 @@ export const HeaderHome = () => {
 						gap={3}
 						marginLeft='20px'
 					>
-						<Link href='#' sx={{
-							textDecoration: 'none',
-							color: '#f5f5f5', '&:hover': { color: '#c0c0c0' }
-						}}
-						>
-							Início
-						</Link>
-						<Link href='#' sx={{
-							textDecoration: 'none',
-							color: '#f5f5f5', '&:hover': { color: '#c0c0c0' }
-						}}
-						>
-							Séries
-						</Link>
-						<Link href='#' sx={{
-							textDecoration: 'none',
-							color: '#f5f5f5', '&:hover': { color: '#c0c0c0' }
-						}}
-						>
-							Filmes
-						</Link>
-						<Link href='#' sx={{
-							textDecoration: 'none',
-							color: '#f5f5f5', '&:hover': { color: '#c0c0c0' }
-						}}
-						>
-							Bombando
-						</Link>
-						<Link href='#' sx={{
-							textDecoration: 'none',
-							color: '#f5f5f5', '&:hover': { color: '#c0c0c0' }
-						}}
-						>
-							Minha lista
-						</Link>
+						<MenuItemLink title='Início' />
+						<MenuItemLink title='Séries' />
+						<MenuItemLink title='Filmes' />
+						<MenuItemLink title='Bombando' />
+						<MenuItemLink title='Minha lista' />
 					</Box>
 				</Box>
 				<Box>
-					<Box>Icons</Box>
+					<Box
+						display='flex'
+						justifyContent="center"
+						alignItems="center"
+					>
+						<HeaderInputSearch />
+						<Box
+							display='flex'
+							justifyContent='start'
+							alignItems='center'
+							width='60px'
+						>
+							<Box
+								display='flex'
+								justifyContent='center'
+								alignItems='center'
+							>
+								<HeaderMenu>
+									<CardMedia
+										src={ImagemProfile}
+										component='img'
+										sx={{
+											width: '32px',
+											height: '32px',
+											borderRadius: '4px',
+										}}
+									/>
+								</HeaderMenu>
+							</Box>
+						</Box>
+					</Box>
 				</Box>
 			</AppBar>
 			<Toolbar />
