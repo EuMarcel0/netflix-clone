@@ -19,7 +19,7 @@ export const HeaderInputSearch = () => {
 				sx={{
 					'& > :not(style)': {
 						display: 'flex',
-						width: checked ? 250 : 15,
+						width: checked ? 215 : 15,
 						transition: '0.1s linear',
 					}
 				}}

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { Box, CardMedia, Divider, Icon, IconButton, Link, Paper, TextField, Typography } from '@mui/material';
+import { Box, Button, CardMedia, Divider, Icon, IconButton, Link, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Menu, { MenuProps } from '@mui/material/Menu';
 
@@ -9,13 +9,12 @@ import Menu, { MenuProps } from '@mui/material/Menu';
 import Profile2 from '../../../assets/images/profile2.jpg';
 import Profile3 from '../../../assets/images/profile3.png';
 import Profile4 from '../../../assets/images/profile4.png';
-import { useAuthContext, useToastAlert } from '../../../shared/contexts';
-import { ToastAlert } from '../../../shared/components';
+import { useAuthContext } from '../../../shared/contexts';
 
 
 const StyledMenu = styled((props: MenuProps) => (
 	<Menu
-		elevation={0}
+		elevation={2}
 		anchorOrigin={{
 			vertical: 'bottom',
 			horizontal: 'right'
@@ -25,13 +24,15 @@ const StyledMenu = styled((props: MenuProps) => (
 			horizontal: 'right'
 		}}
 		{...props}
-		sx={{ backgroundColor: 'rgba(0, 0, 0, 0.08)' }}
 	/>
 ))(({ theme }) => ({
 	'& .MuiPaper-root': {
 		backgroundColor: 'rgba(0, 0, 0, 0.7)',
 		borderRadius: '2px',
+		border: '1px solid #272727',
 		minWidth: '180px',
+		marginTop: theme.spacing(3),
+		marginRight: '10px',
 	}
 }));
 
@@ -48,11 +49,10 @@ const ItemsMenu = ({ description, img, onClick }: IItemsMenuProps) => {
 			display='flex'
 			justifyContent='start'
 			alignItems='center'
-
 			width='100%'
 			height='100%'
 		>
-			<IconButton onClick={onClick} disableRipple>
+			<IconButton onClick={onClick} sx={{ py: '5px' }} >
 				<Box
 					width='100%'
 					maxWidth='32px'
@@ -134,7 +134,7 @@ export const HeaderMenu = ({ children }: IHeaderMenuProps) => {
 					description='Gerenciar perfis'
 					onClick={handleClose}
 				/>
-				<Divider color='#f5f5f5' />
+				<Divider color='#272727' />
 				<ItemsMenu
 					img={<IconButton><Icon sx={{ color: '#f5f5f5' }} >person_outline</Icon></IconButton>}
 					description='Conta'
@@ -145,7 +145,7 @@ export const HeaderMenu = ({ children }: IHeaderMenuProps) => {
 					description='Central de ajuda'
 					onClick={handleClose}
 				/>
-				<Divider color='#f5f5f5' />
+				<Divider color='#272727' />
 				<ItemsMenu
 					img={<IconButton><Icon sx={{ color: '#f5f5f5' }} >logout</Icon></IconButton>}
 					description='Sair da Netflix'

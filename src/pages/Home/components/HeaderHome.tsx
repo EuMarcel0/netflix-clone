@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 
-import { CardMedia, Link, Stack, useTheme } from '@mui/material';
+import { CardMedia, Link, Stack, useMediaQuery, useTheme } from '@mui/material';
 import { HeaderInputSearch } from './HeaderInputSearch';
 import { HeaderMenu } from './HeaderMenu';
 import Box from '@mui/material/Box';
 
 import ImagemProfile from '../../../assets/images/profile.png';
 import LogoName from '../../../assets/images/logo.svg';
+import { HeaderMenuMobile } from './HeaderMenuMobile';
 
 interface IMenuItemProps {
 	title: string;
@@ -35,6 +36,8 @@ const MenuItemLink = ({ title }: IMenuItemProps) => {
 
 export const HeaderHome = ({ bgOption }: IHeaderHomeProps) => {
 	const theme = useTheme();
+	const personalBreakpoint = useMediaQuery(theme.breakpoints.down(990));
+	const smDown = useMediaQuery(theme.breakpoints.down('sm'));
 
 	return (
 		<Box
@@ -58,7 +61,7 @@ export const HeaderHome = ({ bgOption }: IHeaderHomeProps) => {
 					alignItems: 'center',
 					width: '100%',
 					py: '10px',
-					px: '57px',
+					px: smDown ? '10px' : '57px',
 				}}
 			>
 				<Box display='flex' justifyContent='center' alignItems='center' >
@@ -72,20 +75,24 @@ export const HeaderHome = ({ bgOption }: IHeaderHomeProps) => {
 					>
 						<CardMedia component='img' src={LogoName} width='100%' />
 					</Box>
-
-					<Box
-						display='flex'
-						justifyContent='center'
-						alignItems='center'
-						gap={3}
-						marginLeft='20px'
-					>
-						<MenuItemLink title='Início' />
-						<MenuItemLink title='Séries' />
-						<MenuItemLink title='Filmes' />
-						<MenuItemLink title='Bombando' />
-						<MenuItemLink title='Minha lista' />
-					</Box>
+					{(personalBreakpoint &&
+						<HeaderMenuMobile />
+					)}
+					{(!personalBreakpoint &&
+						<Box
+							display='flex'
+							justifyContent='center'
+							alignItems='center'
+							gap={3}
+							marginLeft='20px'
+						>
+							<MenuItemLink title='Início' />
+							<MenuItemLink title='Séries' />
+							<MenuItemLink title='Filmes' />
+							<MenuItemLink title='Bombando' />
+							<MenuItemLink title='Minha lista' />
+						</Box>
+					)}
 				</Box>
 				<Box>
 					<Box
@@ -93,7 +100,9 @@ export const HeaderHome = ({ bgOption }: IHeaderHomeProps) => {
 						justifyContent="center"
 						alignItems="center"
 					>
-						<HeaderInputSearch />
+						{(!smDown &&
+							<HeaderInputSearch />
+						)}
 						<Box
 							display='flex'
 							justifyContent='start'

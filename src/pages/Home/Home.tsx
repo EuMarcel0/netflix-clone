@@ -52,10 +52,12 @@ export const Home = () => {
 		>
 			<HeaderHome bgOption={scrollY} />
 			<Box>
-				{[...new Array(999)].map(() => `Cras mattis consectetur purus sit amet fermentum.
+				{[...new Array(999)].map((item, index) =>
+					`Cras mattis consectetur purus sit amet fermentum.
 					Cras justo odio, dapibus ac facilisis in, egestas eget quam.
 					Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-					Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`)}
+					Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
+				)}
 			</Box>
 		</Box>
 	);
