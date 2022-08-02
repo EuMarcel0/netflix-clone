@@ -4,7 +4,7 @@ import { Box, } from '@mui/material';
 
 import { IGetAllMoviesAndSeriesProps, MoviesService } from '../../shared/services/MoviesService/MoviesService';
 import { useAuthContext } from '../../shared/contexts';
-import { HeaderHome } from './components/HeaderHome';
+import { NavbarHome } from './components/NavbarHome';
 
 interface IHomeMoveis {
 	title: string;
@@ -50,7 +50,7 @@ export const Home = () => {
 			height='100%'
 			bgcolor='#141414'
 		>
-			<HeaderHome bgOption={scrollY} />
+			<NavbarHome bgOption={scrollY} />
 			<Box>
 				{[...new Array(999)].map((item, index) =>
 					`Cras mattis consectetur purus sit amet fermentum.

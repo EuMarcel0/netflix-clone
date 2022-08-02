@@ -1,19 +1,19 @@
-import { useEffect, useState } from 'react';
 
-import { CardMedia, Link, Stack, useMediaQuery, useTheme } from '@mui/material';
-import { HeaderInputSearch } from './HeaderInputSearch';
-import { HeaderMenu } from './HeaderMenu';
+import { CardMedia, Link, useMediaQuery, useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 
-import ImagemProfile from '../../../assets/images/profile.png';
+import ImageProfile from '../../../assets/images/profile.png';
+import { NavbarMenuProfiles } from './NavbarMenuProfiles';
+import { NavbarInputSearch } from './NavbarInputSearch';
 import LogoName from '../../../assets/images/logo.svg';
-import { HeaderMenuMobile } from './HeaderMenuMobile';
+import { NavbarMenuMobile } from './NavbarMenuMobile';
+
 
 interface IMenuItemProps {
 	title: string;
 
 }
-interface IHeaderHomeProps {
+interface INavbarHomeProps {
 	bgOption: boolean;
 }
 
@@ -32,9 +32,7 @@ const MenuItemLink = ({ title }: IMenuItemProps) => {
 	);
 };
 
-
-
-export const HeaderHome = ({ bgOption }: IHeaderHomeProps) => {
+export const NavbarHome = ({ bgOption }: INavbarHomeProps) => {
 	const theme = useTheme();
 	const personalBreakpoint = useMediaQuery(theme.breakpoints.down(990));
 	const smDown = useMediaQuery(theme.breakpoints.down('sm'));
@@ -76,7 +74,7 @@ export const HeaderHome = ({ bgOption }: IHeaderHomeProps) => {
 						<CardMedia component='img' src={LogoName} width='100%' />
 					</Box>
 					{(personalBreakpoint &&
-						<HeaderMenuMobile />
+						<NavbarMenuMobile />
 					)}
 					{(!personalBreakpoint &&
 						<Box
@@ -101,7 +99,7 @@ export const HeaderHome = ({ bgOption }: IHeaderHomeProps) => {
 						alignItems="center"
 					>
 						{(!smDown &&
-							<HeaderInputSearch />
+							<NavbarInputSearch />
 						)}
 						<Box
 							display='flex'
@@ -114,9 +112,9 @@ export const HeaderHome = ({ bgOption }: IHeaderHomeProps) => {
 								justifyContent='center'
 								alignItems='center'
 							>
-								<HeaderMenu>
+								<NavbarMenuProfiles>
 									<CardMedia
-										src={ImagemProfile}
+										src={ImageProfile}
 										component='img'
 										sx={{
 											width: '32px',
@@ -124,7 +122,7 @@ export const HeaderHome = ({ bgOption }: IHeaderHomeProps) => {
 											borderRadius: '4px',
 										}}
 									/>
-								</HeaderMenu>
+								</NavbarMenuProfiles>
 							</Box>
 						</Box>
 					</Box>

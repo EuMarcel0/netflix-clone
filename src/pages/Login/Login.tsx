@@ -16,7 +16,6 @@ import { FormHandles } from '@unform/core';
 interface ILoginProps {
 	children: React.ReactNode;
 }
-
 interface IloginValidationYupSchemaProps {
 	user: string;
 	password: string;
@@ -26,8 +25,6 @@ const loginValidationYupSchema: yup.SchemaOf<IloginValidationYupSchemaProps> = y
 	user: yup.string().required().email(),
 	password: yup.string().required().min(6),
 });
-
-
 
 export const Login = ({ children }: ILoginProps) => {
 	const { isAuthenticated, login } = useAuthContext();

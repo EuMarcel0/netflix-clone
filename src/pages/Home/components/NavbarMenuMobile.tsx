@@ -44,7 +44,7 @@ const StyledMenu = styled((props: MenuProps) => (
 	},
 }));
 
-export const HeaderMenuMobile = () => {
+export const NavbarMenuMobile = () => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
 

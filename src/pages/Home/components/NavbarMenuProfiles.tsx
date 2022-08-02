@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
+import { Box, Divider, Icon, IconButton, Link, Typography } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { Box, Button, CardMedia, Divider, Icon, IconButton, Link, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
 import Menu, { MenuProps } from '@mui/material/Menu';
+import { styled } from '@mui/material/styles';
 
 
 import Profile2 from '../../../assets/images/profile2.jpg';
@@ -31,7 +31,7 @@ const StyledMenu = styled((props: MenuProps) => (
 		borderRadius: '2px',
 		border: '1px solid #272727',
 		minWidth: '180px',
-		marginTop: theme.spacing(3),
+		marginTop: theme.spacing(1),
 		marginRight: '10px',
 	}
 }));
@@ -54,11 +54,12 @@ const ItemsMenu = ({ description, img, onClick }: IItemsMenuProps) => {
 		>
 			<IconButton onClick={onClick} sx={{ py: '5px' }} >
 				<Box
-					width='100%'
-					maxWidth='32px'
+					width='32px'
+					height='32px'
 					marginRight='.5rem'
+					overflow='hidden'
 					sx={{
-						borderRadius: '4px'
+						borderRadius: '3px'
 					}}>
 					{img}
 				</Box>
@@ -82,20 +83,19 @@ const ItemsMenu = ({ description, img, onClick }: IItemsMenuProps) => {
 	);
 };
 
-interface IHeaderMenuProps {
+interface INavbarMenuProfilesProps {
 	children: React.ReactNode;
 }
 
-export const HeaderMenu = ({ children }: IHeaderMenuProps) => {
+export const NavbarMenuProfiles = ({ children }: INavbarMenuProfilesProps) => {
 
-	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
-
 	const { logout } = useAuthContext();
 
-	const handleClose = () => {
-		setAnchorEl(null);
-	};
+	const handleClose = useMemo(() => {
+		return () => setAnchorEl(null);
+	}, [anchorEl, open]);
 
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorEl(event.currentTarget);
@@ -108,46 +108,44 @@ export const HeaderMenu = ({ children }: IHeaderMenuProps) => {
 				<ArrowDropDownIcon sx={{ color: '#f5f5f5' }} />
 			</IconButton>
 			<StyledMenu
-
 				anchorEl={anchorEl}
 				open={open}
 				onClose={handleClose}
-				sx={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}
 			>
 				<ItemsMenu
-					img={<CardMedia component='img' src={Profile2} />}
+					img={<img src={Profile2} style={{ width: '100%' }} />}
 					description='Kal L'
 					onClick={handleClose}
 				/>
 				<ItemsMenu
-					img={<CardMedia component='img' src={Profile3} />}
+					img={<img src={Profile3} style={{ width: '100%' }} />}
 					description='Bruce Wayne'
 					onClick={handleClose}
 				/>
 				<ItemsMenu
-					img={<CardMedia component='img' src={Profile4} />}
+					img={<img src={Profile4} style={{ width: '100%' }} />}
 					description='Black Adam'
 					onClick={handleClose}
 				/>
 				<ItemsMenu
-					img={<IconButton><Icon sx={{ color: '#f5f5f5' }} >edit</Icon></IconButton>}
+					img={<Icon sx={{ color: '#f5f5f5', width: '100%' }} >edit</Icon>}
 					description='Gerenciar perfis'
 					onClick={handleClose}
 				/>
 				<Divider color='#272727' />
 				<ItemsMenu
-					img={<IconButton><Icon sx={{ color: '#f5f5f5' }} >person_outline</Icon></IconButton>}
+					img={<Icon sx={{ color: '#f5f5f5', width: '100%' }} >person_outline</Icon>}
 					description='Conta'
 					onClick={handleClose}
 				/>
 				<ItemsMenu
-					img={<IconButton><Icon sx={{ color: '#f5f5f5' }} >help_outline</Icon></IconButton>}
+					img={<Icon sx={{ color: '#f5f5f5', width: '100%' }} >help_outline</Icon>}
 					description='Central de ajuda'
 					onClick={handleClose}
 				/>
 				<Divider color='#272727' />
 				<ItemsMenu
-					img={<IconButton><Icon sx={{ color: '#f5f5f5' }} >logout</Icon></IconButton>}
+					img={<Icon sx={{ color: '#f5f5f5', width: '100%' }} >logout</Icon>}
 					description='Sair da Netflix'
 					onClick={logout}
 				/>

@@ -5,7 +5,7 @@ import Collapse from '@mui/material/Collapse';
 import { Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 
-export const HeaderInputSearch = () => {
+export const NavbarInputSearch = () => {
 	const [checked, setChecked] = React.useState(false);
 
 	const handleChange = () => {
