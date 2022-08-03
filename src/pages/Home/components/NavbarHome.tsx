@@ -1,5 +1,5 @@
 
-import { CardMedia, Link, useMediaQuery, useTheme } from '@mui/material';
+import { CardMedia, Icon, IconButton, Link, useMediaQuery, useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 
 import ImageProfile from '../../../assets/images/profile.png';
@@ -51,7 +51,7 @@ export const NavbarHome = ({ bgOption }: INavbarHomeProps) => {
 					left: 0,
 					right: 0,
 					zIndex: 999,
-					backgroundColor: bgOption ? '#141414' : 'transparent',
+					backgroundColor: bgOption ? '#141414' : '#141414',
 					transition: '0.4s ease',
 					display: 'flex',
 					flexDirection: 'row',
@@ -82,7 +82,7 @@ export const NavbarHome = ({ bgOption }: INavbarHomeProps) => {
 							justifyContent='center'
 							alignItems='center'
 							gap={3}
-							marginLeft='20px'
+							marginLeft='40px'
 						>
 							<MenuItemLink title='Início' />
 							<MenuItemLink title='Séries' />
@@ -100,6 +100,12 @@ export const NavbarHome = ({ bgOption }: INavbarHomeProps) => {
 					>
 						{(!smDown &&
 							<NavbarInputSearch />
+						)}
+
+						{(!smDown &&
+							<Box>
+								<IconButton><Icon sx={{ color: '#f5f5f5', fontSize: '30px' }}>notifications</Icon></IconButton>
+							</Box>
 						)}
 						<Box
 							display='flex'

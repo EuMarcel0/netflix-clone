@@ -27,11 +27,11 @@ const StyledMenu = styled((props: MenuProps) => (
 	/>
 ))(({ theme }) => ({
 	'& .MuiPaper-root': {
-		backgroundColor: 'rgba(0, 0, 0, 0.7)',
+		backgroundColor: 'rgba(0, 0, 0, 0.9)',
 		borderRadius: '2px',
 		border: '1px solid #272727',
 		minWidth: '180px',
-		marginTop: theme.spacing(1),
+		marginTop: theme.spacing(2),
 		marginRight: '10px',
 	}
 }));
@@ -54,10 +54,12 @@ const ItemsMenu = ({ description, img, onClick }: IItemsMenuProps) => {
 		>
 			<IconButton onClick={onClick} sx={{ py: '5px' }} >
 				<Box
+					display='flex'
+					justifyContent='center'
+					alignItems='center'
 					width='32px'
 					height='32px'
 					marginRight='.5rem'
-					overflow='hidden'
 					sx={{
 						borderRadius: '3px'
 					}}>
@@ -114,7 +116,7 @@ export const NavbarMenuProfiles = ({ children }: INavbarMenuProfilesProps) => {
 			>
 				<ItemsMenu
 					img={<img src={Profile2} style={{ width: '100%' }} />}
-					description='Kal L'
+					description='Clark Kent'
 					onClick={handleClose}
 				/>
 				<ItemsMenu

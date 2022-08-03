@@ -19,7 +19,7 @@ export const NavbarInputSearch = () => {
 				sx={{
 					'& > :not(style)': {
 						display: 'flex',
-						width: checked ? 215 : 15,
+						width: checked ? 220 : 0,
 						transition: '0.1s linear',
 					}
 				}}

@@ -1,17 +1,26 @@
 import { Environment } from '../../environment';
 import { apiMovies } from '../Api/Axios-Config/Api';
 
-export interface IGetAllMoviesAndSeriesProps{
-	relativeURL: string;
+export type IMovieResults = {
+	adult: boolean;
+	backdrop_path: string;
+	genres: [{
+		id: number;
+		name: string;
+	}];
+}
+export type IMoviesProps = {
+	description: string;
+	title: string;
+	movies: IMovieResults[];
 }
 
-const getAllMoviesAndSeries = async ( relativeURL: string ) : Promise<IGetAllMoviesAndSeriesProps|Error>=> {
+const getAllMoviesAndSeries = async ( relativeURL: string ) => {
 	try{
 		const { data } = await apiMovies.get(`${Environment.BASE_URL_MOVIES}${relativeURL}`);
 		if(	data ){
 			return data;
 		}
-		console.log(data);
 		return new Error('Erro ao consultar dados');
 	}catch(error){
 		return new Error((error as {message: string}).message || 'Erro ao consultar dados');

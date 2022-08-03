@@ -2,19 +2,14 @@ import { useEffect, useState } from 'react';
 
 import { Box, } from '@mui/material';
 
-import { IGetAllMoviesAndSeriesProps, MoviesService } from '../../shared/services/MoviesService/MoviesService';
-import { useAuthContext } from '../../shared/contexts';
+import { IMoviesProps, MoviesService } from '../../shared/services/MoviesService/MoviesService';
 import { NavbarHome } from './components/NavbarHome';
+import { MovieRow } from './components/MovieRow';
+import { ListMovieContainer } from './Styles';
 
-interface IHomeMoveis {
-	title: string;
-	description: string;
-	movies: Error | IGetAllMoviesAndSeriesProps;
-}
 
 export const Home = () => {
-	const { logout } = useAuthContext();
-	const [movies, setMovies] = useState<IHomeMoveis[]>([]);
+	const [movie, setMovie] = useState<IMoviesProps[]>([]);
 	const [scrollY, setScrollY] = useState(false);
 
 	const handleScroll = () => {
@@ -30,35 +25,38 @@ export const Home = () => {
 		return () => {
 			window.removeEventListener('scroll', handleScroll);
 		};
-	}, []);
-
-	const handleLogout = () => {
-		logout();
-	};
+	}, [scrollY]);
 
 	useEffect(() => {
-		const reqAllMoveis = async () => {
+		const reqAllMovies = async () => {
 			const result = await MoviesService.getMovies();
-			setMovies(result);
+			if (result) {
+				setMovie(result);
+			}
 		};
-		reqAllMoveis();
+		reqAllMovies();
 	}, []);
 
 	return (
-		<Box
-			width='100%'
-			height='100%'
-			bgcolor='#141414'
-		>
-			<NavbarHome bgOption={scrollY} />
-			<Box>
-				{[...new Array(999)].map((item, index) =>
-					`Cras mattis consectetur purus sit amet fermentum.
-					Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-					Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-					Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
-				)}
+		<>
+			<Box
+				width='100%'
+				height='100%'
+			>
+				<NavbarHome bgOption={scrollY} />
 			</Box>
-		</Box>
+			<ListMovieContainer>
+				<Box>
+					{movie.map((item, index) => (
+						<MovieRow
+							key={index}
+							description={item.description}
+							title={item.title}
+							movies={item.movies}
+						/>
+					))}
+				</Box>
+			</ListMovieContainer>
+		</>
 	);
 };
