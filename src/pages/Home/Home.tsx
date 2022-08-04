@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 
 import { Box, } from '@mui/material';
 
-import { IMoviesProps, MoviesService } from '../../shared/services/MoviesService/MoviesService';
+import { MoviesService } from '../../shared/services/MoviesService/MoviesService';
 import { NavbarHome } from './components/NavbarHome';
 import { MovieRow } from './components/MovieRow';
 import { ListMovieContainer } from './Styles';
+import { IMoviesProps } from '../../shared/services/MoviesService/Types';
 
 
 export const Home = () => {
@@ -28,15 +29,18 @@ export const Home = () => {
 	}, [scrollY]);
 
 	useEffect(() => {
-		const reqAllMovies = async () => {
-			const result = await MoviesService.getMovies();
-			if (result) {
-				setMovie(result);
-			}
-		};
-		reqAllMovies();
+		MoviesService.getAllPopularMovies()
+			.then((response) => {
+				if (response instanceof Error) {
+					alert(response.message);
+					return;
+				}
+				console.log(response);
+				setMovie(response);
+			}).catch((error) => {
+				return error;
+			});
 	}, []);
-
 	return (
 		<>
 			<Box
@@ -47,14 +51,7 @@ export const Home = () => {
 			</Box>
 			<ListMovieContainer>
 				<Box>
-					{movie.map((item, index) => (
-						<MovieRow
-							key={index}
-							description={item.description}
-							title={item.title}
-							movies={item.movies}
-						/>
-					))}
+
 				</Box>
 			</ListMovieContainer>
 		</>

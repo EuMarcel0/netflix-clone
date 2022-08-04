@@ -1,21 +1,10 @@
 import { Environment } from '../../environment';
 import { apiMovies } from '../Api/Axios-Config/Api';
+import { IMoviesProps } from './Types';
 
-export type IMovieResults = {
-	adult: boolean;
-	backdrop_path: string;
-	genres: [{
-		id: number;
-		name: string;
-	}];
-}
-export type IMoviesProps = {
-	description: string;
-	title: string;
-	movies: IMovieResults[];
-}
 
-const getAllMoviesAndSeries = async ( relativeURL: string ) => {
+const getAllPopularMovies = async ( ) : Promise<IMoviesProps | Error> => {
+	const relativeURL = `movie/popular?api_key=${Environment.API_KEY_GET_MOVIES}&${Environment.API_MOVIE_LANG}`;
 	try{
 		const { data } = await apiMovies.get(`${Environment.BASE_URL_MOVIES}${relativeURL}`);
 		if(	data ){
@@ -28,48 +17,5 @@ const getAllMoviesAndSeries = async ( relativeURL: string ) => {
 };
 
 export const MoviesService = {
-	getMovies: async () => {
-		return [
-			{
-				title: 'popular',
-				description: 'Populares Netflix',
-				movies: await  getAllMoviesAndSeries(`movie/popular?api_key=${Environment.API_KEY_GET_MOVIES}&language=${Environment.API_MOVIE_LANG}`),
-			},
-			{
-				title: 'top_rated',
-				description: 'Em alta',
-				movies: await  getAllMoviesAndSeries(`movie/top_rated?api_key=${Environment.API_KEY_GET_MOVIES}&language=${Environment.API_MOVIE_LANG}`),
-			},
-			{
-				title: 'latest',
-				description: 'Lançamentos',
-				movies: await  getAllMoviesAndSeries(`movie/latest?api_key=${Environment.API_KEY_GET_MOVIES}&language=${Environment.API_MOVIE_LANG}`),
-			},
-			{
-				title: 'tv_popular',
-				description: 'Dramas para TV',
-				movies: await  getAllMoviesAndSeries(`tv/popular?api_key=${Environment.API_KEY_GET_MOVIES}&language=${Environment.API_MOVIE_LANG}`),
-			},
-			{
-				title: 'tv_on_the_air',
-				description: 'No ar TV',
-				movies: await  getAllMoviesAndSeries(`tv/on_the_air?api_key=${Environment.API_KEY_GET_MOVIES}&language=${Environment.API_MOVIE_LANG}`),
-			},
-			{
-				title: 'tv_latest',
-				description: 'Os mais recentes para TV',
-				movies: await  getAllMoviesAndSeries(`tv/latest?api_key=${Environment.API_KEY_GET_MOVIES}&language=${Environment.API_MOVIE_LANG}`),
-			},
-			{
-				title: 'discover',
-				description: 'Documentários',
-				movies: await  getAllMoviesAndSeries(`discover/movie?api_key=${Environment.API_KEY_GET_MOVIES}&language=${Environment.API_MOVIE_LANG}`),
-			},
-			{
-				title: 'play_again',
-				description: 'Assistir novamente',
-				movies: await  getAllMoviesAndSeries(`movie/top_rated?api_key=${Environment.API_KEY_GET_MOVIES}&language=${Environment.API_MOVIE_LANG}`),
-			},
-		];
-	},
+	getAllPopularMovies,
 };
