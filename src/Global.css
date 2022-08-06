@@ -8,8 +8,10 @@
 
   	-webkit-font-smoothing: antialiased;
 }
+/*For reset overflow and padding after open MUI menuProfiles*/
 body{
 	padding-right: 0 !important;
+	overflow-y: auto !important;
 }
 
 /* For define color default in inputs and labels forms of project */

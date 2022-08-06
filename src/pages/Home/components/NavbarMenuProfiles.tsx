@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 
-import { Box, Divider, Icon, IconButton, Link, Typography } from '@mui/material';
+import { ariaHidden, Box, Divider, Icon, IconButton, Link, Typography } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Menu, { MenuProps } from '@mui/material/Menu';
 import { styled } from '@mui/material/styles';
@@ -17,7 +17,7 @@ const StyledMenu = styled((props: MenuProps) => (
 		elevation={2}
 		anchorOrigin={{
 			vertical: 'bottom',
-			horizontal: 'right'
+			horizontal: 'right',
 		}}
 		transformOrigin={{
 			vertical: 'top',
@@ -32,7 +32,6 @@ const StyledMenu = styled((props: MenuProps) => (
 		border: '1px solid #272727',
 		minWidth: '180px',
 		marginTop: theme.spacing(2),
-		marginRight: '10px',
 	}
 }));
 

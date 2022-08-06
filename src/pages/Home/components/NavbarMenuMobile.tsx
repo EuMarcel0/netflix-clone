@@ -88,7 +88,7 @@ export const NavbarMenuMobile = () => {
 							textDecoration: 'none',
 							transition: 'all 0.3s ease',
 							'&:hover': {
-								backgroundColor: 'rgba(65, 65, 65, 0.069)',
+								backgroundColor: 'rgba(65, 65, 65, 0.049)',
 							}
 						}}
 					>

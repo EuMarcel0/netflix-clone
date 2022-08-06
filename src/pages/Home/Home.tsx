@@ -3,10 +3,9 @@ import { useEffect, useState } from 'react';
 import { Box, } from '@mui/material';
 
 import { MoviesService } from '../../shared/services/MoviesService/MoviesService';
+import { IMoviesProps } from '../../shared/services/MoviesService/Types';
 import { NavbarHome } from './components/NavbarHome';
 import { MovieRow } from './components/MovieRow';
-import { ListMovieContainer } from './Styles';
-import { IMoviesProps } from '../../shared/services/MoviesService/Types';
 
 
 export const Home = () => {
@@ -43,28 +42,28 @@ export const Home = () => {
 	}, []);
 
 	return (
-		<>
+		<Box>
 			<Box
 				width='100%'
 				height='100%'
 			>
 				<NavbarHome bgOption={scrollY} />
 			</Box>
-			<ListMovieContainer>
-				<Box
-					width='100vw'
-					sx={{ overflowX: 'hidden' }}
-				>
-					{movie.map((item, index) => (
+
+			<Box
+				width='100%'
+				bgcolor='#141414'
+			>
+				{movie.map((item, index) => (
+					<Box key={index}>
 						<MovieRow
-							key={index}
 							movies={item.items.results}
 							original_title={item.original_title}
 							title={item.title}
 						/>
-					))}
-				</Box>
-			</ListMovieContainer>
-		</>
+					</Box>
+				))}
+			</Box>
+		</Box>
 	);
 };
