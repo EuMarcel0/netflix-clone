@@ -1,2 +1,2 @@
 export * from './AuthContext/AuthContext';
-export * from './ToastContext/ToastContext';
+export * from './ThemeContext/ThemeContext';

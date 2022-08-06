@@ -35,12 +35,13 @@ export const Home = () => {
 					alert(response.message);
 					return;
 				}
-				console.log(response);
 				setMovie(response);
+				console.log(response);
 			}).catch((error) => {
 				return error;
 			});
 	}, []);
+
 	return (
 		<>
 			<Box
@@ -51,7 +52,14 @@ export const Home = () => {
 			</Box>
 			<ListMovieContainer>
 				<Box>
-
+					{movie.map((item, index) => (
+						<MovieRow
+							key={index}
+							movies={item.items.results}
+							original_title={item.original_title}
+							title={item.title}
+						/>
+					))}
 				</Box>
 			</ListMovieContainer>
 		</>
