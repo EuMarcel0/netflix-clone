@@ -51,7 +51,10 @@ export const Home = () => {
 				<NavbarHome bgOption={scrollY} />
 			</Box>
 			<ListMovieContainer>
-				<Box>
+				<Box
+					width='100vw'
+					sx={{ overflowX: 'hidden' }}
+				>
 					{movie.map((item, index) => (
 						<MovieRow
 							key={index}

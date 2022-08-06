@@ -6,7 +6,7 @@ import { Form } from '@unform/web';
 import * as yup from 'yup';
 
 import { ToastAlert, UnformInputText } from '../../shared/components';
-import { Footer, LoginContainer, ShadeBackground } from './Styles';
+import { Footer, LoginContainer } from './Styles';
 import { FooterLogin } from './components/FooterLogin';
 import { useAuthContext } from '../../shared/contexts';
 import LogoName from '../../assets/images/logo.svg';
@@ -68,14 +68,12 @@ export const Login = ({ children }: ILoginProps) => {
 
 	return (
 		<Box
-			width='100vw'
-			height='100vh'
+			width='100%'
+			height='100%'
 			display='flex'
 		>
-			<Box width='100%' height='auto' >
-				<ShadeBackground style={{ position: 'fixed', top: 0, left: 0, bottom: 0, right: 0 }}>
-					<CardMedia component={'img'} src={Bg} width='100%' height='100%' sx={{ position: 'fixed', top: 0, left: 0, bottom: 0, right: 0 }} />
-				</ShadeBackground>
+			<Box>
+				<CardMedia component={'img'} src={Bg} width='100%' height='100%' sx={{ position: 'fixed', top: 0, left: 0, bottom: 0, right: 0 }} />
 			</Box>
 			<Box
 				component={'header'}
@@ -92,7 +90,9 @@ export const Login = ({ children }: ILoginProps) => {
 				right='0'
 				bottom='0'
 			>
-				<Box width='170px'>
+				<Box
+					width='170px'
+				>
 					<CardMedia component={'img'} src={LogoName} width={50} height='auto' />
 				</Box>
 				<LoginContainer>

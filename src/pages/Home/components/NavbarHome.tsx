@@ -51,7 +51,7 @@ export const NavbarHome = ({ bgOption }: INavbarHomeProps) => {
 					left: 0,
 					right: 0,
 					zIndex: 999,
-					backgroundColor: bgOption ? '#141414' : '#141414',
+					backgroundColor: bgOption ? '#141414' : '#1414144a',
 					transition: '0.4s ease',
 					display: 'flex',
 					flexDirection: 'row',

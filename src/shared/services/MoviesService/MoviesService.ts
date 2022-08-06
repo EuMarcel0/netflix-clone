@@ -61,22 +61,22 @@ export const MoviesService = {
 			{
 				original_title: 'popular_tv',
 				title: 'Em alta na TV',
-				items: await getMovies(`/tv/popular?api_key=${Environment.API_KEY_GET_MOVIES}&language=${Environment.API_MOVIE_LANG}`),
+				items: await getMovies(`tv/popular?api_key=${Environment.API_KEY_GET_MOVIES}&language=${Environment.API_MOVIE_LANG}`),
 			},
 			{
 				original_title: 'to_rate_tv',
 				title: 'Os melhores da TV',
-				items: await getMovies(`/tv/top_rated?api_key=${Environment.API_KEY_GET_MOVIES}&language=${Environment.API_MOVIE_LANG}`),
+				items: await getMovies(`tv/top_rated?api_key=${Environment.API_KEY_GET_MOVIES}&language=${Environment.API_MOVIE_LANG}`),
 			},
 			{
 				original_title: 'on_the_air_tv',
 				title: 'TV no ar',
-				items: await getMovies(`/tv/on_the_air?api_key=${Environment.API_KEY_GET_MOVIES}&language=${Environment.API_MOVIE_LANG}`),
+				items: await getMovies(`tv/on_the_air?api_key=${Environment.API_KEY_GET_MOVIES}&language=${Environment.API_MOVIE_LANG}`),
 			},
 			{
 				original_title: 'air_today_tv',
 				title: 'No ar hoje TV',
-				items: await getMovies(`/tv/airing_today?api_key=${Environment.API_KEY_GET_MOVIES}&language=${Environment.API_MOVIE_LANG}`),
+				items: await getMovies(`tv/airing_today?api_key=${Environment.API_KEY_GET_MOVIES}&language=${Environment.API_MOVIE_LANG}`),
 			},
 			{
 				original_title: 'documentary',
