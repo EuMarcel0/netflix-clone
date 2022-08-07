@@ -50,18 +50,14 @@ export const Home = () => {
 				<NavbarHome bgOption={scrollY} />
 			</Box>
 
-			<Box
-				width='100%'
-				bgcolor='#141414'
-			>
+			<Box>
 				{movie.map((item, index) => (
-					<Box key={index}>
-						<MovieRow
-							movies={item.items.results}
-							original_title={item.original_title}
-							title={item.title}
-						/>
-					</Box>
+					<MovieRow
+						key={index}
+						movies={item.items.results}
+						original_title={item.original_title}
+						title={item.title}
+					/>
 				))}
 			</Box>
 		</Box>

@@ -4,6 +4,7 @@ import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 import { IPopularMovies } from '../../../shared/services/MoviesService/Types';
 import DefaultMovieImage from '../../../assets/images/image_default_movie.jpg';
+import { useRef, useState } from 'react';
 
 interface IMovieRowProps {
 	title: string;
@@ -14,12 +15,25 @@ interface IMovieRowProps {
 const URL_BASE_IMAGE_MOVIE_ROW = 'https://image.tmdb.org/t/p/w300';
 
 export const MovieRow = ({ title, movies }: IMovieRowProps) => {
+	const rowRef = useRef<HTMLDivElement>(null);
+	const [isMoved, setIsMoved] = useState(false);
 
 	const theme = useTheme();
 	const ArrowsPersonalMediaQuery = useMediaQuery(theme.breakpoints.down(1120));
 
+	const handleClick = (direction: string) => {
+		setIsMoved(true);
+		if (rowRef.current) {
+			const { scrollLeft, clientWidth } = rowRef.current;
+			const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
+			rowRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+		}
+	};
+
 	return (
-		<Box paddingLeft='60px' width='100%' height='auto' sx={{ overflowX: 'hidden' }} >
+		<Box paddingLeft='60px' position='relative'>
+
+			{/* Navbar */}
 			<Box paddingY='20px'>
 				<Typography
 					variant='h5'
@@ -29,69 +43,53 @@ export const MovieRow = ({ title, movies }: IMovieRowProps) => {
 					{title}
 				</Typography>
 			</Box>
+
+
 			<Box
 				className='groupHover'
-				display='flex'
-				width='100vw'
+				width='100%'
+				height='auto'
+				display='inline-flex'
 				marginBottom='40px'
-				position='relative'
 				sx={{
 					'&:hover': {
 						'& .arrows': { opacity: '1', }
-					}
+					},
+					overflowX: 'hidden'
 				}}
-			>
-				<Box>
-					<NavigateBeforeIcon
-						className='arrows'
-						sx={{
-							color: '#f5f5f5',
-							position: 'absolute',
-							top: '0',
-							left: ArrowsPersonalMediaQuery ? '-5%' : '-3%',
-							zIndex: '99',
-							fontSize: '10px',
-							fontWeight: 'bold',
-							backgroundColor: 'transparent',
-							'&:hover': { backgroundColor: '#141414a2' },
-							transition: '0.2s linear',
-							cursor: 'pointer',
-							width: '80px',
-							height: '140px',
-							borderRadius: '4px',
-							opacity: '0'
+				ref={rowRef}
 
-						}}
-					/>
-					<NavigateNextIcon
-						className='arrows'
-						sx={{
-							color: '#f5f5f5',
-							position: 'absolute',
-							top: '0',
-							right: ArrowsPersonalMediaQuery ? '5%' : '4%',
-							zIndex: '99',
-							fontSize: '10px',
-							fontWeight: 'bold',
-							backgroundColor: 'transparent',
-							'&:hover': { backgroundColor: '#141414a2' },
-							transition: '0.2s linear',
-							cursor: 'pointer',
-							width: '80px',
-							height: '141px',
-							borderRadius: '4px',
-							opacity: '0'
-						}}
-					/>
-				</Box>
-				{movies.map((item, index) => (
-					<Box
-						position='relative'
-						key={index}
-					>
+			>
+				<NavigateBeforeIcon
+					className='arrows'
+					onClick={() => handleClick('left')}
+					sx={{
+						color: '#f5f5f5',
+						position: 'absolute',
+						top: '27%',
+						left: '-1px',
+						zIndex: '99',
+						fontSize: '10px',
+						fontWeight: 'bold',
+						backgroundColor: 'transparent',
+						'&:hover': { backgroundColor: '#141414a2' },
+						transition: '0.2s linear',
+						cursor: 'pointer',
+						width: '80px',
+						height: '144px',
+						borderRadius: '4px',
+						opacity: '0',
+						display: isMoved ? 'block' : 'none',
+					}}
+				/>
+				<Box
+					display='flex'
+					justifyContent='start'
+				>
+					{movies.map((item, index) => (
 						<Box
+							key={index}
 							display='flex'
-							alignItems='center'
 							justifyContent='start'
 						>
 							<img
@@ -101,8 +99,29 @@ export const MovieRow = ({ title, movies }: IMovieRowProps) => {
 								style={{ borderRadius: '4px', marginRight: '5px', cursor: 'pointer' }}
 							/>
 						</Box>
-					</Box>
-				))}
+					))}
+				</Box>
+				<NavigateNextIcon
+					className='arrows'
+					onClick={() => handleClick('right')}
+					sx={{
+						color: '#f5f5f5',
+						position: 'absolute',
+						top: '27%',
+						right: '0',
+						zIndex: '99',
+						fontSize: '10px',
+						fontWeight: 'bold',
+						backgroundColor: 'transparent',
+						'&:hover': { backgroundColor: '#141414a2' },
+						transition: '0.2s linear',
+						cursor: 'pointer',
+						width: '80px',
+						height: '144px',
+						borderRadius: '4px',
+						opacity: '0'
+					}}
+				/>
 			</Box>
 		</Box >
 	);
