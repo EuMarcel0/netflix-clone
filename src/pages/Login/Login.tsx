@@ -67,13 +67,15 @@ export const Login = ({ children }: ILoginProps) => {
 	});
 
 	return (
-		<Box
-			width='100%'
-			height='100%'
-			display='flex'
-		>
+		<Box width='100%' height='100%' display='flex' >
 			<Box>
-				<CardMedia component={'img'} src={Bg} width='100%' height='100%' sx={{ position: 'fixed', top: 0, left: 0, bottom: 0, right: 0 }} />
+				<CardMedia
+					component={'img'}
+					src={Bg}
+					width='100%'
+					height='100%'
+					sx={{ position: 'fixed', top: 0, left: 0, bottom: 0, right: 0 }}
+				/>
 			</Box>
 			<Box
 				component={'header'}
@@ -142,7 +144,12 @@ export const Login = ({ children }: ILoginProps) => {
 								justifyContent='end'
 								marginTop={theme.spacing(1)}
 							>
-								<ToastAlert message='This is a clone. For more information, visit the site: www.netflix.com' description='Precisa de ajuda?' vertical={'top'} horizontal={'left'} />
+								<ToastAlert
+									message='This is a clone. For more information, visit the site: www.netflix.com'
+									description='Precisa de ajuda?'
+									vertical={'top'}
+									horizontal={'left'}
+								/>
 							</Box>
 							<Box
 								display='flex'
@@ -163,7 +170,12 @@ export const Login = ({ children }: ILoginProps) => {
 							</Box>
 						</Box>
 						<Box width='100%' display='flex' justifyContent='center' marginTop={theme.spacing(3)}>
-							<ToastAlert message='Email: eve.holt@reqres.in | Senha: cityslicka' description='Obter email e senha' vertical={'top'} horizontal={'left'} />
+							<ToastAlert
+								message='Email: eve.holt@reqres.in | Senha: cityslicka'
+								description='Obter email e senha'
+								vertical={'top'}
+								horizontal={'left'}
+							/>
 						</Box>
 						<Box
 							width='100%'
