@@ -2,15 +2,18 @@ import { useEffect, useState } from 'react';
 
 import { Box, useTheme, useMediaQuery, Typography, Button, Icon } from '@mui/material';
 
-import { INetflixOriginals } from '../../../shared/services/MoviesService/Types';
 import { MoviesService } from '../../../shared/services/MoviesService/MoviesService';
+import { INetflixOriginals } from '../../../shared/services/MoviesService/Types';
+import { useModalMovieInfoContext } from '../../../shared/contexts';
 
+const URL_BASE_IMAGE_BANNER = 'https://image.tmdb.org/t/p/original';
 
 export const MovieBanner = () => {
 	const theme = useTheme();
 	const smDown = useMediaQuery(theme.breakpoints.down('sm'));
 	const mdDown = useMediaQuery(theme.breakpoints.down('md'));
 	const [movie, setMovie] = useState<INetflixOriginals>();
+	const { toggleOpenMovieInfo } = useModalMovieInfoContext();
 
 	useEffect(() => {
 		MoviesService.getAllNetflixOriginals()
@@ -34,9 +37,8 @@ export const MovieBanner = () => {
 			});
 	}, []);
 
-	const URL_BASE_IMAGE_BANNER = 'https://image.tmdb.org/t/p/original';
-
 	return (
+
 		<Box position='relative'>
 			<Box
 				width='100%'
@@ -117,6 +119,7 @@ export const MovieBanner = () => {
 						Assistir
 					</Button>
 					<Button
+						onClick={toggleOpenMovieInfo}
 						variant='contained'
 						startIcon={<Icon fontSize='large' sx={{ color: '#f5f5f5', }}>info</Icon>}
 						sx={{

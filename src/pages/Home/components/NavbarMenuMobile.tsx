@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { Box, Icon, IconButton, Link, Typography, useMediaQuery } from '@mui/material';
-import { styled, alpha, useTheme } from '@mui/material/styles';
+import { Box, Icon, IconButton, Link, Typography } from '@mui/material';
+import { styled, alpha } from '@mui/material/styles';
 import Menu, { MenuProps } from '@mui/material/Menu';
 
 const StyledMenu = styled((props: MenuProps) => (
@@ -21,7 +21,7 @@ const StyledMenu = styled((props: MenuProps) => (
 ))(({ theme }) => ({
 	'& .MuiPaper-root': {
 		marginTop: theme.spacing(2),
-		backgroundColor: 'rgba(0, 0, 0, 0.9)',
+		backgroundColor: 'rgb(20, 20, 20,1)',
 		borderTop: '3px solid #f5f5f5',
 		borderRadius: '2px',
 		minWidth: theme.breakpoints.down(330) ? 220 : 280,
@@ -47,13 +47,16 @@ const StyledMenu = styled((props: MenuProps) => (
 export const NavbarMenuMobile = () => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
+	const [arrowMenuOrientation, setArrowMenuOrientation] = React.useState(false);
 
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+		setArrowMenuOrientation(true);
 		setAnchorEl(event.currentTarget);
 	};
-	const handleClose = () => {
+	const handleClose = React.useCallback(() => {
+		setArrowMenuOrientation(false);
 		setAnchorEl(null);
-	};
+	}, []);
 
 	return (
 		<Box
@@ -64,12 +67,14 @@ export const NavbarMenuMobile = () => {
 		>
 			<IconButton
 				onClick={handleClick}
+				onMouseOver={handleClick}
+				disableRipple
 			>
 				<Typography sx={{ color: '#f5f5f5', fontSize: '12px' }}>
 					Navegar
 				</Typography>
 				<Icon sx={{ color: '#f5f5f5' }}>
-					arrow_drop_down_icon
+					{arrowMenuOrientation ? 'arrow_drop_up' : 'arrow_drop_down'}
 				</Icon>
 			</IconButton>
 			<StyledMenu

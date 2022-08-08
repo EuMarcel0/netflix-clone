@@ -1,7 +1,6 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
-import { ariaHidden, Box, Divider, Icon, IconButton, Link, Typography } from '@mui/material';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { Box, Divider, Icon, IconButton, Link, Typography } from '@mui/material';
 import Menu, { MenuProps } from '@mui/material/Menu';
 import { styled } from '@mui/material/styles';
 
@@ -27,11 +26,11 @@ const StyledMenu = styled((props: MenuProps) => (
 	/>
 ))(({ theme }) => ({
 	'& .MuiPaper-root': {
-		backgroundColor: 'rgba(0, 0, 0, 0.9)',
+		backgroundColor: 'rgb(20, 20, 20,1)',
 		borderRadius: '2px',
 		border: '1px solid #272727',
 		minWidth: '180px',
-		marginTop: theme.spacing(2),
+		marginTop: '10px',
 	}
 }));
 
@@ -93,20 +92,30 @@ export const NavbarMenuProfiles = ({ children }: INavbarMenuProfilesProps) => {
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
 	const { logout } = useAuthContext();
-
-	const handleClose = useMemo(() => {
-		return () => setAnchorEl(null);
-	}, [anchorEl, open]);
+	const [arrowMenuOrientation, setArrowMenuOrientation] = useState(false);
 
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorEl(event.currentTarget);
+		setArrowMenuOrientation(true);
 	};
+
+	const handleClose = useCallback(() => {
+		setArrowMenuOrientation(false);
+		setAnchorEl(null);
+	}, []);
+
 
 	return (
 		<Box>
-			<IconButton onClick={handleClick}>
+			<IconButton onMouseOver={handleClick} onClick={handleClick} disableRipple >
 				{children}
-				<ArrowDropDownIcon sx={{ color: '#f5f5f5' }} />
+				{arrowMenuOrientation ?
+					<Icon sx={{ color: '#f5f5f5' }}>
+						arrow_drop_up
+					</Icon>
+					: <Icon sx={{ color: '#f5f5f5' }}>
+						arrow_drop_down
+					</Icon>}
 			</IconButton>
 			<StyledMenu
 				anchorEl={anchorEl}
@@ -114,17 +123,17 @@ export const NavbarMenuProfiles = ({ children }: INavbarMenuProfilesProps) => {
 				onClose={handleClose}
 			>
 				<ItemsMenu
-					img={<img src={Profile2} style={{ width: '100%' }} />}
+					img={<img src={Profile2} style={{ width: '100%', borderRadius: '3px' }} />}
 					description='Clark Kent'
 					onClick={handleClose}
 				/>
 				<ItemsMenu
-					img={<img src={Profile3} style={{ width: '100%' }} />}
+					img={<img src={Profile3} style={{ width: '100%', borderRadius: '3px' }} />}
 					description='Bruce Wayne'
 					onClick={handleClose}
 				/>
 				<ItemsMenu
-					img={<img src={Profile4} style={{ width: '100%' }} />}
+					img={<img src={Profile4} style={{ width: '100%', borderRadius: '3px' }} />}
 					description='Black Adam'
 					onClick={handleClose}
 				/>

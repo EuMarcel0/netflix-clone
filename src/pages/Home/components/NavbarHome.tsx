@@ -49,7 +49,7 @@ export const NavbarHome = ({ bgOption }: INavbarHomeProps) => {
 					top: 0,
 					left: 0,
 					right: 0,
-					zIndex: 999,
+					zIndex: '1',
 					background: bgOption ? '#141414' : 'linear-gradient(180deg, rgba(0,0,0,.7) 10%, transparent)',
 					transition: '0.3s linear',
 					display: 'flex',
