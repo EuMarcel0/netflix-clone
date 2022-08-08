@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 
-import { Box, CircularProgress, useTheme, useMediaQuery } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 
 import { MoviesService } from '../../shared/services/MoviesService/MoviesService';
 import { TMoviesProps } from '../../shared/services/MoviesService/Types';
+import { MovieBanner } from './components/MovieBanner';
 import { NavbarHome } from './components/NavbarHome';
 import { MovieRow } from './components/MovieRow';
-import { MovieBanner } from './components/MovieBanner';
 
 
 export const Home = () => {
@@ -50,7 +50,7 @@ export const Home = () => {
 				</Box>
 			)}
 			<Box>
-				<MovieBanner movies={movie} />
+				<MovieBanner />
 			</Box>
 			{(isLoading &&
 				<Box

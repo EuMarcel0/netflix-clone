@@ -33,7 +33,8 @@ export const NavbarInputSearch = () => {
 									sx={{
 										borderColor: '#f5f5f5',
 										border: '1px solid #f5f5f5',
-										backgroundColor: '#000000a2'
+										backgroundColor: '#000000a2',
+										outline: 'none',
 									}}
 									placeholder='Filmes, Séries, Gêneros'
 								>

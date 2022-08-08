@@ -15,8 +15,7 @@ const getMovies = async ( relativeURL: string ) => {
 	}
 };
 
-const getAllNetflixOriginals = async () => {
-
+const getAllNetflixOriginals = async () : Promise<INetflixOriginals | Error> => {
 	try{
 		const { data } = await apiMovies.get(`${Environment.BASE_URL_MOVIES}discover/tv?with_network=213&api_key=${Environment.API_KEY_GET_MOVIES}&language=${Environment.API_MOVIE_LANG}`);
 		if(	data ){

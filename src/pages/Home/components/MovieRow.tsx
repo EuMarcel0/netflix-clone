@@ -1,6 +1,6 @@
+import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import { Box, Typography } from '@mui/material';
 
 import DefaultMovieImage from '../../../assets/images/image_default_movie.jpg';
 import { IPopularMovies } from '../../../shared/services/MoviesService/Types';
@@ -17,6 +17,9 @@ const URL_BASE_IMAGE_THUMBNAIL = 'https://image.tmdb.org/t/p/w300';
 export const MovieRow = ({ title, movies }: IMovieRowProps) => {
 	const rowRef = useRef<HTMLDivElement>(null);
 	const [isMoved, setIsMoved] = useState(false);
+	const theme = useTheme();
+	const mdDown = useMediaQuery(theme.breakpoints.down('md'));
+
 
 
 	const handleClick = (direction: string) => {
@@ -29,8 +32,8 @@ export const MovieRow = ({ title, movies }: IMovieRowProps) => {
 	};
 
 	return (
-		<Box position='relative'>
-			<Box paddingY='10px' paddingLeft='60px'>
+		<Box position='relative' marginTop={mdDown ? '-170px' : '-300px'} marginBottom={mdDown ? '200px' : '300px'} height='100%'>
+			<Box paddingY='10px' paddingLeft={mdDown ? '10px' : '60px'}>
 				<Typography variant='h5' fontWeight={'bold'} color='#f5f5f5'>
 					{title}
 				</Typography>
@@ -41,7 +44,7 @@ export const MovieRow = ({ title, movies }: IMovieRowProps) => {
 				height='auto'
 				display='inline-flex'
 				marginBottom='40px'
-				paddingLeft='60px'
+				paddingLeft={mdDown ? '10px' : '60px'}
 				sx={{
 					'&:hover': {
 						'& .arrows': { opacity: '1', }
@@ -79,7 +82,7 @@ export const MovieRow = ({ title, movies }: IMovieRowProps) => {
 								width='250px'
 								src={item.backdrop_path ? `${URL_BASE_IMAGE_THUMBNAIL}${item.backdrop_path}` : DefaultMovieImage}
 								alt='filme_image'
-								style={{ borderRadius: '4px', marginRight: '5px', cursor: 'pointer' }}
+								style={{ borderRadius: '4px', marginRight: '8px', cursor: 'pointer' }}
 							/>
 						</Box>
 					))}

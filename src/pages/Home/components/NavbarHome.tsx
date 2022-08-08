@@ -8,7 +8,6 @@ import { NavbarInputSearch } from './NavbarInputSearch';
 import LogoName from '../../../assets/images/logo.svg';
 import { NavbarMenuMobile } from './NavbarMenuMobile';
 
-
 interface IMenuItemProps {
 	title: string;
 
@@ -51,8 +50,8 @@ export const NavbarHome = ({ bgOption }: INavbarHomeProps) => {
 					left: 0,
 					right: 0,
 					zIndex: 999,
-					backgroundColor: bgOption ? '#141414' : '#1414144a',
-					transition: '0.4s ease',
+					background: bgOption ? '#141414' : 'linear-gradient(180deg, rgba(0,0,0,.7) 10%, transparent)',
+					transition: '0.3s linear',
 					display: 'flex',
 					flexDirection: 'row',
 					justifyContent: 'space-between',

@@ -25,8 +25,8 @@ export type TMoviesProps = {
 		total_results: number;
 	};
 }
-
 export interface INetflixOriginals{
+	adult: boolean;
 	backdrop_path: string | null;
 	created_by: any[];
 	episode_run_time: number[];
@@ -65,19 +65,16 @@ export interface INetflixOriginals{
 	type: string;
 	seasons: any[];
 }
-
 export interface INetflixOriginals{
 	page: number;
-	results: IPopularMovies[];
+	results: any[];
 	total_pages: number;
 	total_results: number;
 }
-
 export interface INetflixOriginalsGenres{
 	id: number;
 	name: string;
 }
-
 export interface INetflixOriginalsLastEpisodeToAir{
 	air_date: string;
 	episode_number: number;
