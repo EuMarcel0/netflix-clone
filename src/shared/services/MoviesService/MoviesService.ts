@@ -1,9 +1,35 @@
 import { Environment } from '../../environment';
 import { apiMovies } from '../Api/Axios-Config/Api';
-import { IMoviesProps } from './Types';
+import {  INetflixOriginals } from './Types';
 
 
 const getMovies = async ( relativeURL: string ) => {
+	try{
+		const { data } = await apiMovies.get(`${Environment.BASE_URL_MOVIES}${relativeURL}`);
+		if(	data ){
+			return data;
+		}
+		return new Error('Erro ao consultar dados');
+	}catch(error){
+		return new Error((error as {message: string}).message || 'Erro ao consultar dados');
+	}
+};
+
+const getAllNetflixOriginals = async () => {
+
+	try{
+		const { data } = await apiMovies.get(`${Environment.BASE_URL_MOVIES}discover/tv?with_network=213&api_key=${Environment.API_KEY_GET_MOVIES}&language=${Environment.API_MOVIE_LANG}`);
+		if(	data ){
+			return data;
+		}
+		return new Error('Erro ao consultar dados');
+	}catch(error){
+		return new Error((error as {message: string}).message || 'Erro ao consultar dados');
+	}
+};
+
+const getAllNetflixOriginalsDetails = async ( id: number ) : Promise<INetflixOriginals | Error>=> {
+	const relativeURL = `tv/${id}?api_key=${Environment.API_KEY_GET_MOVIES}&language=${Environment.API_MOVIE_LANG}`;
 	try{
 		const { data } = await apiMovies.get(`${Environment.BASE_URL_MOVIES}${relativeURL}`);
 		if(	data ){
@@ -84,5 +110,7 @@ export const MoviesService = {
 				items: await getMovies(`discover/movie?with_genres=99&api_key=${Environment.API_KEY_GET_MOVIES}&language=${Environment.API_MOVIE_LANG}`),
 			}
 		];
-	}
+	},
+	getAllNetflixOriginals,
+	getAllNetflixOriginalsDetails
 };

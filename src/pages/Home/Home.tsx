@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 
-import { Box, CircularProgress, } from '@mui/material';
+import { Box, CircularProgress, useTheme, useMediaQuery } from '@mui/material';
 
 import { MoviesService } from '../../shared/services/MoviesService/MoviesService';
-import { IMoviesProps } from '../../shared/services/MoviesService/Types';
+import { TMoviesProps } from '../../shared/services/MoviesService/Types';
 import { NavbarHome } from './components/NavbarHome';
 import { MovieRow } from './components/MovieRow';
+import { MovieBanner } from './components/MovieBanner';
 
 
 export const Home = () => {
-	const [movie, setMovie] = useState<IMoviesProps[]>([]);
+	const [movie, setMovie] = useState<TMoviesProps[]>([]);
 	const [scrollY, setScrollY] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -43,8 +44,13 @@ export const Home = () => {
 
 	return (
 		<Box>
-			<Box width='100%' height='100%' >
-				<NavbarHome bgOption={scrollY} />
+			{(!isLoading &&
+				<Box width='100%' height='100%' >
+					<NavbarHome bgOption={scrollY} />
+				</Box>
+			)}
+			<Box>
+				<MovieBanner movies={movie} />
 			</Box>
 			{(isLoading &&
 				<Box
@@ -57,7 +63,10 @@ export const Home = () => {
 						left: '50%',
 					}}
 				>
-					<CircularProgress variant='indeterminate' sx={{ color: '#e50914' }} />
+					<CircularProgress
+						variant='indeterminate'
+						sx={{ color: '#e50914' }}
+					/>
 				</Box>
 			)}
 			{(!isLoading &&
