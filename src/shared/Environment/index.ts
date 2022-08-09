@@ -15,4 +15,7 @@ export const Environment = {
 	 * Api key for get movies.
 	 */
 	API_MOVIE_LANG: 'pt-BR',
+	/**
+	 * URL image base for get movies.
+	 */
 };

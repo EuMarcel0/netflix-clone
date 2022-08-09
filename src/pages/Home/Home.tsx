@@ -7,16 +7,11 @@ import { TMoviesProps } from '../../shared/services/MoviesService/Types';
 import { MovieBanner } from './components/MovieBanner';
 import { NavbarHome } from './components/NavbarHome';
 import { MovieRow } from './components/MovieRow';
-import { ModalMovieInfo } from '../../shared/components';
-import { useModalMovieInfoContext } from '../../shared/contexts';
-
 
 export const Home = () => {
 	const [movie, setMovie] = useState<TMoviesProps[]>([]);
 	const [scrollY, setScrollY] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
-
-	const { isOpenMovieInfo } = useModalMovieInfoContext();
 
 	const handleScroll = () => {
 		if (window.scrollY > 180) {
@@ -53,9 +48,11 @@ export const Home = () => {
 					<NavbarHome bgOption={scrollY} />
 				</Box>
 			)}
-			<Box>
-				<MovieBanner />
-			</Box>
+			{(!isLoading &&
+				<Box>
+					<MovieBanner />
+				</Box>
+			)}
 			{(isLoading &&
 				<Box
 					display='flex'
@@ -85,7 +82,6 @@ export const Home = () => {
 					))}
 				</Box>
 			)}
-			{(isOpenMovieInfo && <ModalMovieInfo />)}
 		</Box>
 	);
 };

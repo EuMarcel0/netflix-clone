@@ -1,41 +1,23 @@
-import { useEffect, useState } from 'react';
-
 import { Box, useTheme, useMediaQuery, Typography, Button, Icon } from '@mui/material';
-
-import { MoviesService } from '../../../shared/services/MoviesService/MoviesService';
-import { INetflixOriginals } from '../../../shared/services/MoviesService/Types';
 import { useModalMovieInfoContext } from '../../../shared/contexts';
+import { ModalMovieInfo } from '../../../shared/components';
 
 const URL_BASE_IMAGE_BANNER = 'https://image.tmdb.org/t/p/original';
+
+const buttonStyle = {
+	borderRadius: '5px',
+	height: '60px',
+	fontWeight: 'bold',
+	textTransform: 'capitalize',
+	paddingX: '10px',
+};
 
 export const MovieBanner = () => {
 	const theme = useTheme();
 	const smDown = useMediaQuery(theme.breakpoints.down('sm'));
 	const mdDown = useMediaQuery(theme.breakpoints.down('md'));
-	const [movie, setMovie] = useState<INetflixOriginals>();
-	const { toggleOpenMovieInfo } = useModalMovieInfoContext();
-
-	useEffect(() => {
-		MoviesService.getAllNetflixOriginals()
-			.then((response) => {
-				if (response instanceof Error) {
-					alert(response.message);
-					return;
-				} else {
-					const randomNumber = Math.floor(Math.random() * response.results.length - 1);
-					const chosenMovie = response.results[randomNumber].id;
-					MoviesService.getAllNetflixOriginalsDetails(chosenMovie)
-						.then((response) => {
-							if (response instanceof Error) {
-								alert(response.message);
-								return;
-							} else {
-								setMovie(response);
-							}
-						});
-				}
-			});
-	}, []);
+	const personalBreakpoint = useMediaQuery(theme.breakpoints.down(400));
+	const { movie, isOpenedMovieInfo, toggleMovieInfo } = useModalMovieInfoContext();
 
 	return (
 
@@ -97,49 +79,44 @@ export const MovieBanner = () => {
 				>
 					{movie?.overview}
 				</Typography>
-				<Box marginTop='20px'>
+				<Box marginTop='20px' gap='10px' paddingRight={2} sx={{ display: 'flex', flexDirection: personalBreakpoint ? 'column' : 'row' }}>
 					<Button
 						variant='contained'
 						startIcon={<Icon fontSize='large' sx={{ color: '#333' }}>play_arrow</Icon>}
 						sx={{
-							borderRadius: '5px',
-							width: smDown ? '40%' : '240px',
-							height: '65px',
+							...buttonStyle,
+							width: personalBreakpoint ? '170px' : '190px',
 							backgroundColor: '#f5f5f5',
 							'&:hover': {
 								backgroundColor: '#ccc',
 							},
-							color: '#333',
 							fontSize: smDown ? '1rem' : '1.4rem',
-							fontWeight: 'bold',
-							textTransform: 'capitalize',
-							marginRight: '10px',
+							color: '#333',
 						}}
 					>
 						Assistir
 					</Button>
 					<Button
-						onClick={toggleOpenMovieInfo}
+						onClick={toggleMovieInfo}
 						variant='contained'
-						startIcon={<Icon fontSize='large' sx={{ color: '#f5f5f5', }}>info</Icon>}
+						startIcon={<Icon fontSize='large' sx={{ color: '#f5f5f5' }}>info</Icon>}
 						sx={{
-							borderRadius: '5px',
-							width: smDown ? '40%' : '240px',
-							height: '65px',
+							...buttonStyle,
+							width: personalBreakpoint ? '170px' : '260px',
 							backgroundColor: 'rgba(109,109,110,0.7)',
 							'&:hover': {
 								backgroundColor: 'rgba(109,109,110,0.5)',
 							},
-							color: '#f5f5f5',
 							fontSize: smDown ? '1rem' : '1.4rem',
-							fontWeight: 'bold',
-							textTransform: 'capitalize',
+							color: '#f5f5f5',
 						}}
 					>
 						Mais informações
 					</Button>
+					{(isOpenedMovieInfo && <ModalMovieInfo />)}
 				</Box>
 			</Box>
+
 		</Box>
 
 	);
