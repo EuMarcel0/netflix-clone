@@ -7,6 +7,7 @@ import { TMoviesProps } from '../../shared/services/MoviesService/Types';
 import { MovieBanner } from './components/MovieBanner';
 import { NavbarHome } from './components/NavbarHome';
 import { MovieRow } from './components/MovieRow';
+import { Footer } from '../../shared/components';
 
 export const Home = () => {
 	const [movie, setMovie] = useState<TMoviesProps[]>([]);
@@ -58,10 +59,10 @@ export const Home = () => {
 					display='flex'
 					justifyContent='center'
 					alignItems='center'
+					width='100%'
 					sx={{
 						position: 'absolute',
 						top: '50%',
-						left: '50%',
 					}}
 				>
 					<CircularProgress
@@ -82,6 +83,7 @@ export const Home = () => {
 					))}
 				</Box>
 			)}
+			{(!isLoading && <Footer />)}
 		</Box>
 	);
 };

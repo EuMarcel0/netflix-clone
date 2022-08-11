@@ -50,11 +50,8 @@ export const ModalMovieInfo = () => {
 	const personalBreakpoint = useMediaQuery(theme.breakpoints.down(400));
 	const personalBreakpoint500px = useMediaQuery(theme.breakpoints.down(500));
 	const { movie } = useModalMovieInfoContext();
-	const [isLoading, setIsLoading] = useState(false);
 
-	const dateMovie = movie?.first_air_date ? movie?.first_air_date : movie?.release_date;
-	if (dateMovie === undefined) return;
-	const dateYear = new Date(dateMovie).getFullYear();
+	const yearMovieDate = new Date(movie?.first_air_date ? movie?.first_air_date : '').getFullYear().toString();
 
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
@@ -210,7 +207,7 @@ export const ModalMovieInfo = () => {
 
 						<Box display='flex' alignItems='center' gap={2}>
 							<Typography sx={{ color: '#46d639', fontWeight: 'bold' }}>{movie?.vote_average ? Math.floor(movie!.vote_average * 10) : '0'}% relevante</Typography>
-							<Typography sx={{ color: '#f5f5f5', fontWeight: 'bold' }}>{dateYear}</Typography>
+							<Typography sx={{ color: '#f5f5f5', fontWeight: 'bold' }}>{yearMovieDate}</Typography>
 						</Box>
 						<Box marginBottom={1}>
 							<Typography sx={{ color: '#f5f5f5' }}>{movie?.overview ? movie?.overview : 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem'}</Typography>
@@ -220,11 +217,6 @@ export const ModalMovieInfo = () => {
 								<Box>
 									<Typography sx={{ color: '#999' }}>
 										Gêneros: <span style={{ color: '#f5f5f5' }}>{movie?.genres.map((genres) => genres.name).join(', ')}</span>
-									</Typography>
-								</Box>
-								<Box>
-									<Typography sx={{ color: '#999' }}>
-										Elenco:
 									</Typography>
 								</Box>
 								<Box>

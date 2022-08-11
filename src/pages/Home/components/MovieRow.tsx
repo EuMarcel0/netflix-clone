@@ -1,10 +1,11 @@
+import { useRef, useState } from 'react';
 import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
 import DefaultMovieImage from '../../../assets/images/image_default_movie.jpg';
 import { IPopularMovies } from '../../../shared/services/MoviesService/Types';
-import { useRef, useState } from 'react';
+import { Thumbnail, ThumbnailContainer } from './MovieRowStyle';
 
 interface IMovieRowProps {
 	title: string;
@@ -19,8 +20,7 @@ export const MovieRow = ({ title, movies }: IMovieRowProps) => {
 	const [isMoved, setIsMoved] = useState(false);
 	const theme = useTheme();
 	const mdDown = useMediaQuery(theme.breakpoints.down('md'));
-
-
+	const [cardIsHover, setCardIsHover] = useState(false);
 
 	const handleClick = (direction: string) => {
 		setIsMoved(true);
@@ -32,7 +32,7 @@ export const MovieRow = ({ title, movies }: IMovieRowProps) => {
 	};
 
 	return (
-		<Box position='relative' marginTop={mdDown ? '-170px' : '-300px'} marginBottom={mdDown ? '200px' : '300px'} height='100%'>
+		<Box position='relative' marginTop={mdDown ? '-170px' : '-300px'} marginBottom={mdDown ? '200px' : '300px'} height='100%' sx={{ overflowX: 'hidden', '&:last-child': { mb: '10px' } }}>
 			<Box paddingY='10px' paddingLeft={mdDown ? '10px' : '60px'}>
 				<Typography variant='h5' fontWeight={'bold'} color='#f5f5f5'>
 					{title}
@@ -69,7 +69,7 @@ export const MovieRow = ({ title, movies }: IMovieRowProps) => {
 						transition: '0.2s linear',
 						cursor: 'pointer',
 						width: '80px',
-						height: '144px',
+						height: '149px',
 						borderRadius: '4px',
 						opacity: '0',
 						display: isMoved ? 'block' : 'none',
@@ -77,14 +77,13 @@ export const MovieRow = ({ title, movies }: IMovieRowProps) => {
 				/>
 				<Box display='flex' justifyContent='start' >
 					{movies.map((item, index) => (
-						<Box key={index} display='flex' justifyContent='start' >
-							<img
-								width='250px'
+						<ThumbnailContainer key={index}>
+							<Thumbnail
+								onMouseOver={() => setCardIsHover(true)}
 								src={item.backdrop_path ? `${URL_BASE_IMAGE_THUMBNAIL}${item.backdrop_path}` : DefaultMovieImage}
-								alt='filme_image'
-								style={{ borderRadius: '4px', marginRight: '8px', cursor: 'pointer' }}
+								alt='movie_image'
 							/>
-						</Box>
+						</ThumbnailContainer>
 					))}
 				</Box>
 				<NavigateNextIcon
@@ -94,7 +93,7 @@ export const MovieRow = ({ title, movies }: IMovieRowProps) => {
 						color: '#f5f5f5',
 						position: 'absolute',
 						top: '21%',
-						right: '0',
+						right: '-10px',
 						zIndex: '99',
 						fontSize: '10px',
 						fontWeight: 'bold',
@@ -103,7 +102,7 @@ export const MovieRow = ({ title, movies }: IMovieRowProps) => {
 						transition: '0.2s linear',
 						cursor: 'pointer',
 						width: '80px',
-						height: '144px',
+						height: '149px',
 						borderRadius: '4px',
 						opacity: '0'
 					}}

@@ -5,11 +5,10 @@ import { GitHub, LinkedIn, WhatsApp } from '@mui/icons-material';
 import { Form } from '@unform/web';
 import * as yup from 'yup';
 
-import { ToastAlert, UnformInputText } from '../../shared/components';
-import { FooterLogin } from './components/FooterLogin';
+import { Footer, ToastAlert, UnformInputText } from '../../shared/components';
 import { useAuthContext } from '../../shared/contexts';
 import LogoName from '../../assets/images/logo.svg';
-import { Footer, LoginContainer } from './Styles';
+import { FooterLogin, LoginContainer } from './Styles';
 import Bg from '../../assets/images/bg2.png';
 import { FormHandles } from '@unform/core';
 
@@ -203,9 +202,9 @@ export const Login = ({ children }: ILoginProps) => {
 					</Box>
 				</LoginContainer>
 			</Box >
-			<Footer>
-				<FooterLogin />
-			</Footer>
+			<FooterLogin>
+				<Footer />
+			</FooterLogin>
 		</Box >
 	);
 };

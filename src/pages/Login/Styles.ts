@@ -9,7 +9,7 @@ export const LoginContainer = styled.div`
 	margin-top: 10px;
 `;
 
-export const Footer = styled.div`
+export const FooterLogin = styled.div`
 	height: 100%;
 	max-height: 255px;
 	width: 100%;

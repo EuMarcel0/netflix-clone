@@ -1,6 +1,6 @@
 import { Box, Link, Typography, useMediaQuery, useTheme } from '@mui/material';
 
-export const FooterLogin = () => {
+export const Footer = () => {
 	const theme = useTheme();
 	const smDown = useMediaQuery(theme.breakpoints.down('sm'));
 
