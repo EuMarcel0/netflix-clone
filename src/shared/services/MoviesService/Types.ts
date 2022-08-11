@@ -64,6 +64,7 @@ export interface INetflixOriginals{
 	vote_count: number;
 	type: string;
 	seasons: any[];
+	videos: INetflixOriginalsVideos;
 }
 export interface INetflixOriginals{
 	page: number;
@@ -88,3 +89,6 @@ export interface INetflixOriginalsLastEpisodeToAir{
 	vote_count: number;
 }
 
+export interface INetflixOriginalsVideos{
+	result: any[];
+}

@@ -28,7 +28,7 @@ const getAllNetflixOriginals = async () : Promise<INetflixOriginals | Error> => 
 };
 
 const getAllNetflixOriginalsDetails = async ( id: number ) : Promise<INetflixOriginals | Error>=> {
-	const relativeURL = `tv/${id}?api_key=${Environment.API_KEY_GET_MOVIES}&language=${Environment.API_MOVIE_LANG}`;
+	const relativeURL = `tv/${id}?api_key=${Environment.API_KEY_GET_MOVIES}&language=${Environment.API_MOVIE_LANG}&append_to_response=videos`;
 	try{
 		const { data } = await apiMovies.get(`${Environment.BASE_URL_MOVIES}${relativeURL}`);
 		if(	data ){

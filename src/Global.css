@@ -7,6 +7,7 @@
 	/* overflow-x: hidden; */
 
   	-webkit-font-smoothing: antialiased;
+
 }
 /*For reset overflow and padding after open MUI menuProfiles*/
 body{
@@ -22,4 +23,16 @@ input{
 
 label{
 	color: #CCC !important;
+}
+
+*::-webkit-scrollbar {
+    width: 2px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #141414;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #e50914;
 }
