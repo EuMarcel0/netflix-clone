@@ -98,7 +98,7 @@ export const Login = ({ children }: ILoginProps) => {
 				</Box>
 				<LoginContainer>
 					<Box
-						bgcolor='#000000ab'
+						bgcolor={'#000000ab'}
 						width='100%'
 						maxWidth={smDown ? '100%' : '450px'}
 						height='100%'
@@ -202,7 +202,7 @@ export const Login = ({ children }: ILoginProps) => {
 					</Box>
 				</LoginContainer>
 			</Box >
-			<FooterLogin>
+			<FooterLogin height={smDown ? 200 : 255}>
 				<Footer />
 			</FooterLogin>
 		</Box >

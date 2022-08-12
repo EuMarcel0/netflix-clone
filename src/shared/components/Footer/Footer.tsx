@@ -14,7 +14,7 @@ export const Footer = () => {
 			paddingTop={theme.spacing(2)}
 			paddingX={theme.spacing(1)}
 		>
-			<Box marginBottom='10px' paddingX={theme.spacing(2)}>
+			<Box marginBottom={smDown ? '0' : '10px'} paddingX={theme.spacing(2)}>
 				<Typography variant='caption' sx={{ color: '#737373', fontSize: smDown ? '13px' : '16px' }}>Perguntas? Ligue 7777 777 7777</Typography>
 			</Box>
 			<Box
@@ -27,8 +27,8 @@ export const Footer = () => {
 					flexDirection='column'
 					paddingX={theme.spacing(2)}
 				>
-					<Link href='#' sx={{ color: '#737373', fontSize: '13px', marginTop: '15px', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>Perguntas frequentes</Link>
-					<Link href='#' sx={{ color: '#737373', fontSize: '13px', marginTop: '15px', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>Preferências de cookies</Link>
+					<Link href='#' sx={{ color: '#737373', fontSize: '13px', marginTop: '10px', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>Perguntas frequentes</Link>
+					<Link href='#' sx={{ color: '#737373', fontSize: '13px', marginTop: '10px', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>Preferências de cookies</Link>
 				</Box>
 				<Box
 					flex='1'
@@ -36,8 +36,8 @@ export const Footer = () => {
 					flexDirection='column'
 					paddingX={theme.spacing(2)}
 				>
-					<Link href='#' sx={{ color: '#737373', fontSize: '13px', marginTop: '15px', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>Centro de ajuda</Link>
-					<Link href='#' sx={{ color: '#737373', fontSize: '13px', marginTop: '15px', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>Informação corporativa</Link>
+					<Link href='#' sx={{ color: '#737373', fontSize: '13px', marginTop: '10px', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>Centro de ajuda</Link>
+					<Link href='#' sx={{ color: '#737373', fontSize: '13px', marginTop: '10px', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>Informação corporativa</Link>
 				</Box>
 				<Box
 					flex='1'
@@ -45,7 +45,7 @@ export const Footer = () => {
 					flexDirection='column'
 					paddingX={theme.spacing(2)}
 				>
-					<Link href='#' sx={{ color: '#737373', fontSize: '13px', marginTop: '15px', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>Termos de uso</Link>
+					<Link href='#' sx={{ color: '#737373', fontSize: '13px', marginTop: '10px', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>Termos de uso</Link>
 				</Box>
 				<Box
 					flex='1'
@@ -53,7 +53,7 @@ export const Footer = () => {
 					flexDirection='column'
 					paddingX={theme.spacing(2)}
 				>
-					<Link href='#' sx={{ color: '#737373', fontSize: '13px', marginTop: '15px', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>Privacidade</Link>
+					<Link href='#' sx={{ color: '#737373', fontSize: '13px', marginTop: '10px', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>Privacidade</Link>
 				</Box>
 
 			</Box>

@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface Props {
+	height: number;
+}
+
 export const LoginContainer = styled.div`
 	height: calc(80vh - 45px);
 	width: 100%;
@@ -11,7 +15,7 @@ export const LoginContainer = styled.div`
 
 export const FooterLogin = styled.div`
 	height: 100%;
-	max-height: 255px;
+	max-height: ${({height} : Props) => height}px;
 	width: 100%;
 	padding-bottom: 10px;
 	position: absolute;
