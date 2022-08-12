@@ -6,6 +6,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import DefaultMovieImage from '../../../assets/images/image_default_movie.jpg';
 import { IPopularMovies } from '../../../shared/services/MoviesService/Types';
 import { Thumbnail, ThumbnailContainer } from './MovieRowStyle';
+import { ModalMovieInfo } from '../../../shared/components';
 
 interface IMovieRowProps {
 	title: string;
@@ -20,7 +21,6 @@ export const MovieRow = ({ title, movies }: IMovieRowProps) => {
 	const [isMoved, setIsMoved] = useState(false);
 	const theme = useTheme();
 	const mdDown = useMediaQuery(theme.breakpoints.down('md'));
-	const [cardIsHover, setCardIsHover] = useState(false);
 
 	const handleClick = (direction: string) => {
 		setIsMoved(true);
@@ -79,7 +79,6 @@ export const MovieRow = ({ title, movies }: IMovieRowProps) => {
 					{movies.map((item, index) => (
 						<ThumbnailContainer key={index}>
 							<Thumbnail
-								onMouseOver={() => setCardIsHover(true)}
 								src={item.backdrop_path ? `${URL_BASE_IMAGE_THUMBNAIL}${item.backdrop_path}` : DefaultMovieImage}
 								alt='movie_image'
 							/>

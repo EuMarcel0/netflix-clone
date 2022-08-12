@@ -17,7 +17,7 @@ export const MovieBanner = () => {
 	const smDown = useMediaQuery(theme.breakpoints.down('sm'));
 	const mdDown = useMediaQuery(theme.breakpoints.down('md'));
 	const personalBreakpoint = useMediaQuery(theme.breakpoints.down(400));
-	const { movie, isOpenedMovieInfo } = useModalMovieInfoContext();
+	const { movie } = useModalMovieInfoContext();
 
 	return (
 

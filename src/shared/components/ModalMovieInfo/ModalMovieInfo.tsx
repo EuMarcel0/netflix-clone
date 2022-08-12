@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { Box, Button, CardMedia, Icon, IconButton, Modal, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useModalMovieInfoContext } from '../../contexts';
@@ -18,7 +18,7 @@ export const modalAreaStyles = {
 	height: 'auto',
 	mx: 'auto',
 	borderRadius: '7px',
-	position: 'relative',
+	position: 'relative' as const,
 };
 
 export const modalButtonCloseStyles = {
@@ -53,8 +53,8 @@ export const ModalMovieInfo = () => {
 
 	const yearMovieDate = new Date(movie?.first_air_date ? movie?.first_air_date : '').getFullYear().toString();
 
-	const handleOpen = () => setOpen(true);
-	const handleClose = () => setOpen(false);
+	const handleOpen = useCallback(() => setOpen(true), []);
+	const handleClose = useCallback(() => setOpen(false), []);
 
 	return (
 		<Box>
@@ -77,13 +77,13 @@ export const ModalMovieInfo = () => {
 			<Modal
 				open={open}
 				onClose={handleClose}
-				aria-labelledby="modal-modal-title"
-				aria-describedby="modal-modal-description"
 				sx={{
 					marginX: 'auto',
 					overflowY: 'scroll',
 					paddingY: '3rem',
 					paddingX: '1rem',
+					position: 'fixed' as const,
+					zIndex: '99',
 				}}
 			>
 				<Box
