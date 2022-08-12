@@ -6,7 +6,6 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import DefaultMovieImage from '../../../assets/images/image_default_movie.jpg';
 import { IPopularMovies } from '../../../shared/services/MoviesService/Types';
 import { Thumbnail, ThumbnailContainer } from './MovieRowStyle';
-import { ModalMovieInfo } from '../../../shared/components';
 
 interface IMovieRowProps {
 	title: string;
