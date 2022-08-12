@@ -10,11 +10,12 @@ export const Footer = () => {
 			flexDirection='column'
 			maxWidth='1024px'
 			marginX='auto'
-			paddingY={theme.spacing(5)}
+			paddingBottom={theme.spacing(5)}
+			paddingTop={theme.spacing(2)}
 			paddingX={theme.spacing(1)}
 		>
 			<Box marginBottom='10px' paddingX={theme.spacing(2)}>
-				<Typography variant='caption' sx={{ color: '#737373', fontSize: '16px' }}>Perguntas? Ligue 7777 777 7777</Typography>
+				<Typography variant='caption' sx={{ color: '#737373', fontSize: smDown ? '13px' : '16px' }}>Perguntas? Ligue 7777 777 7777</Typography>
 			</Box>
 			<Box
 				display='flex'
