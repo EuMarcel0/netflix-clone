@@ -113,8 +113,8 @@ export const Login = ({ children }: ILoginProps) => {
 
 						<Box>
 							<Form ref={unformRef} onSubmit={handleLogin}>
-								<UnformInputText name='user' label='Email ou número de telefone' />
-								<UnformInputText name='password' label='Senha' type='password' />
+								<UnformInputText name='user' label='Email ou número de telefone' disabled={isLoading} />
+								<UnformInputText name='password' label='Senha' type='password' disabled={isLoading} />
 							</Form>
 							<Button
 								variant='contained'
