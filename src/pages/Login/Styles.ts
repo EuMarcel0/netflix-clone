@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 interface Props {
 	height: number;
+	bgcolor: string;
 }
 
 export const LoginContainer = styled.div`
@@ -23,5 +24,5 @@ export const FooterLogin = styled.div`
 	left: 0;
 	right: 0;
 	overflow-y: hidden;
-	background-color: #000000ab;
+	background-color: ${({bgcolor} : Props) => bgcolor};
 `;

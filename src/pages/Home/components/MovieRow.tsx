@@ -31,7 +31,7 @@ export const MovieRow = ({ title, movies }: IMovieRowProps) => {
 	};
 
 	return (
-		<Box position='relative' marginTop={mdDown ? '-170px' : '-300px'} marginBottom={mdDown ? '200px' : '300px'} height='100%' sx={{ overflowX: 'hidden', '&:last-child': { mb: '10px' } }}>
+		<Box position='relative' marginTop={mdDown ? '-20%' : '-18%'} marginBottom={mdDown ? '20%' : '18%'} height='100%' sx={{ overflowX: 'hidden', '&:last-child': { mb: '10px' } }}>
 			<Box paddingY='10px' paddingLeft={mdDown ? '10px' : '60px'}>
 				<Typography variant='h5' fontWeight={'bold'} color='#f5f5f5'>
 					{title}
@@ -68,7 +68,7 @@ export const MovieRow = ({ title, movies }: IMovieRowProps) => {
 						transition: '0.2s linear',
 						cursor: 'pointer',
 						width: '80px',
-						height: '149px',
+						height: '151px',
 						borderRadius: '4px',
 						opacity: '0',
 						display: isMoved ? 'block' : 'none',
@@ -100,7 +100,7 @@ export const MovieRow = ({ title, movies }: IMovieRowProps) => {
 						transition: '0.2s linear',
 						cursor: 'pointer',
 						width: '80px',
-						height: '149px',
+						height: '151px',
 						borderRadius: '4px',
 						opacity: '0'
 					}}

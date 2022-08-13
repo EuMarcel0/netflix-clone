@@ -29,6 +29,7 @@ export const Login = ({ children }: ILoginProps) => {
 	const { isAuthenticated, login } = useAuthContext();
 	const theme = useTheme();
 	const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+	const personalBreakpoint740px = useMediaQuery(theme.breakpoints.down(740));
 	const unformRef = useRef<FormHandles>(null);
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -90,6 +91,7 @@ export const Login = ({ children }: ILoginProps) => {
 				left='0'
 				right='0'
 				bottom='0'
+				bgcolor={personalBreakpoint740px ? '#141414' : ''}
 			>
 				<Box
 					width='170px'
@@ -98,13 +100,13 @@ export const Login = ({ children }: ILoginProps) => {
 				</Box>
 				<LoginContainer>
 					<Box
-						bgcolor={'#000000ab'}
+						bgcolor={personalBreakpoint740px ? '#141414' : '#000000ab'}
 						width='100%'
 						maxWidth={smDown ? '100%' : '450px'}
 						height='100%'
-						maxHeight='660px'
+						maxHeight={personalBreakpoint740px ? '100vh' : '660px'}
 						overflow={'hidden'}
-						padding={theme.spacing(smDown ? 2 : 8)}
+						padding={theme.spacing(personalBreakpoint740px ? 2 : 8)}
 						sx={{ borderRadius: '4px' }}
 					>
 						<Box marginBottom={3}>
@@ -202,7 +204,7 @@ export const Login = ({ children }: ILoginProps) => {
 					</Box>
 				</LoginContainer>
 			</Box >
-			<FooterLogin height={smDown ? 200 : 255}>
+			<FooterLogin height={smDown ? 200 : 255} bgcolor={personalBreakpoint740px ? '#141414' : '#000000ab'}>
 				<Footer />
 			</FooterLogin>
 		</Box >
