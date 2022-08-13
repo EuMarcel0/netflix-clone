@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 
-import { Box, Button, CardMedia, Typography, useTheme, Link, Divider, IconButton, useMediaQuery, CircularProgress } from '@mui/material';
+import { Box, Button, CardMedia, Typography, useTheme, Link, Divider, IconButton, useMediaQuery, CircularProgress, Checkbox } from '@mui/material';
 import { GitHub, LinkedIn, WhatsApp } from '@mui/icons-material';
 import { Form } from '@unform/web';
 import * as yup from 'yup';
@@ -31,6 +31,7 @@ export const Login = ({ children }: ILoginProps) => {
 	const smDown = useMediaQuery(theme.breakpoints.down('sm'));
 	const personalBreakpoint740px = useMediaQuery(theme.breakpoints.down(740));
 	const unformRef = useRef<FormHandles>(null);
+	const [typePassword, setTypePassword] = useState(true);
 	const [isLoading, setIsLoading] = useState(false);
 
 	if (isAuthenticated) {
@@ -116,8 +117,12 @@ export const Login = ({ children }: ILoginProps) => {
 						<Box>
 							<Form ref={unformRef} onSubmit={handleLogin}>
 								<UnformInputText name='user' label='Email ou número de telefone' disabled={isLoading} />
-								<UnformInputText name='password' label='Senha' type='password' disabled={isLoading} />
+								<UnformInputText name='password' label='Senha' type={typePassword ? 'password' : 'text'} disabled={isLoading} />
 							</Form>
+							<Box width='100%' display='flex' alignItems='center'>
+								<Checkbox sx={{ color: '#f5f5f5' }} onClick={() => setTypePassword(!typePassword)} />
+								<Typography color='#FFF' variant='body2' fontSize='12px' fontWeight='normal'>mostrar senha</Typography>
+							</Box>
 							<Button
 								variant='contained'
 								fullWidth
